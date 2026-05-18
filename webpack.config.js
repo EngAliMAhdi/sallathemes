@@ -10,7 +10,7 @@ module.exports = {
     search: './src/assets/js/search.js',
   },
   output: {
-    path: path.resolve(__dirname, 'public/dist'),
+    path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
     clean: true,
   },
