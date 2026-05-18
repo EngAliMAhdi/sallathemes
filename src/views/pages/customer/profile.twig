@@ -1,0 +1,65 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12">
+    <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-8">{{ trans('common.elements.my_account') }}</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <aside class="lg:col-span-1">
+            <nav class="glass rounded-2xl p-4 space-y-1 sticky top-24">
+                <a href="{{ link('customer.profile') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:text-white hover:bg-white/[0.03] transition-all text-sm {{ is_current_url('customer.profile') ? 'text-white bg-white/[0.05]' : '' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                    {{ trans('common.elements.profile') }}
+                </a>
+                <a href="{{ link('customer.orders') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:text-white hover:bg-white/[0.03] transition-all text-sm {{ is_current_url('customer.orders') ? 'text-white bg-white/[0.05]' : '' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    {{ trans('common.elements.my_orders') }}
+                </a>
+                <a href="{{ link('customer.wishlist') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:text-white hover:bg-white/[0.03] transition-all text-sm {{ is_current_url('customer.wishlist') ? 'text-white bg-white/[0.05]' : '' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    {{ trans('common.elements.wishlist') }}
+                </a>
+                <a href="{{ link('customer.notifications') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:text-white hover:bg-white/[0.03] transition-all text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    {{ trans('common.elements.notifications') }}
+                </a>
+                <a href="{{ link('logout') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-400/60 hover:text-red-400 hover:bg-red-500/5 transition-all text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                    {{ trans('common.elements.logout') }}
+                </a>
+            </nav>
+        </aside>
+
+        <div class="lg:col-span-3">
+            <div class="glass-card p-6 md:p-8">
+                <h2 class="font-display text-2xl font-bold text-white mb-6">{{ trans('common.elements.profile_info') }}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-white/30 mb-1.5">{{ trans('common.elements.full_name') }}</label>
+                        <input type="text" value="{{ user.name }}" class="glass-input w-full text-sm" disabled/>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-white/30 mb-1.5">{{ trans('common.elements.email') }}</label>
+                        <input type="email" value="{{ user.email }}" class="glass-input w-full text-sm" disabled/>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-white/30 mb-1.5">{{ trans('common.elements.phone') }}</label>
+                        <input type="text" value="{{ user.mobile }}" class="glass-input w-full text-sm" disabled/>
+                    </div>
+                </div>
+                <button class="btn-primary text-sm mt-6">{{ trans('common.elements.edit_profile') }}</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

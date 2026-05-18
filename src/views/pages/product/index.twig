@@ -1,0 +1,48 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+{% component 'header.breadcrumbs' %}
+
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12">
+    <div class="text-center mb-12" x-data="animateOnScroll">
+        <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">{{ page_title }}</h1>
+        {% if category_description %}
+            <p class="text-white/40 text-lg max-w-2xl mx-auto">{{ category_description }}</p>
+        {% endif %}
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+        <aside class="lg:w-64 flex-shrink-0">
+            <div class="glass rounded-2xl p-6 sticky top-24">
+                <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">
+                    {{ trans('common.elements.filters') }}
+                </h3>
+                {% hook 'filters' %}
+            </div>
+        </aside>
+
+        <div class="flex-1">
+            <div class="flex items-center justify-between mb-6">
+                <p class="text-white/40 text-sm">{{ products|length }} {{ trans('common.elements.products') }}</p>
+                <div class="flex items-center gap-2">
+                    <select class="glass-input text-sm py-2">
+                        <option>{{ trans('common.elements.sort_default') }}</option>
+                        <option>{{ trans('common.elements.sort_newest') }}</option>
+                        <option>{{ trans('common.elements.sort_price_low') }}</option>
+                        <option>{{ trans('common.elements.sort_price_high') }}</option>
+                        <option>{{ trans('common.elements.sort_bestselling') }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                {% for product in products %}
+                    <div x-data="animateOnScroll">
+                        {% include 'partials.product.card' with { product: product } %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

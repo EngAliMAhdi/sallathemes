@@ -1,0 +1,49 @@
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8">
+    <div class="text-center mb-12" x-data="animateOnScroll">
+        <h2 class="section-title neon-text-purple">{{ title|default('What Gamers Say') }}</h2>
+    </div>
+
+    {% if testimonials is defined and testimonials|length > 0 %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" x-data="animateOnScroll">
+            {% for testimonial in testimonials %}
+                <div class="testimonial-card">
+                    <p class="text-white/70 text-sm leading-relaxed mb-6 relative z-10">
+                        "{{ testimonial.content }}"
+                    </p>
+
+                    <div class="flex items-center gap-3">
+                        {% if testimonial.avatar %}
+                            <img src="{{ testimonial.avatar }}"
+                                 alt="{{ testimonial.name }}"
+                                 class="w-10 h-10 rounded-full object-cover border-2 border-neon-purple/30"/>
+                        {% else %}
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-neon-purple to-purple-700 flex items-center justify-center text-white font-bold text-sm">
+                                {{ testimonial.name|slice(0, 1) }}
+                            </div>
+                        {% endif %}
+
+                        <div>
+                            <h4 class="text-white font-semibold text-sm">{{ testimonial.name }}</h4>
+                            {% if testimonial.role %}
+                                <p class="text-white/30 text-xs">{{ testimonial.role }}</p>
+                            {% endif %}
+                        </div>
+
+                        {% if testimonial.rating %}
+                            <div class="ml-auto flex text-yellow-400">
+                                {% for i in 1..5 %}
+                                    <svg class="w-3.5 h-3.5 {{ i <= testimonial.rating ? 'fill-current' : 'text-white/15' }}"
+                                         viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% component 'component-testimonials' %}
+    {% endif %}
+</section>

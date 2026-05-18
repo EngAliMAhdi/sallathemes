@@ -1,0 +1,73 @@
+<footer class="relative mt-auto border-t border-white/[0.04] footer-glow">
+    <div class="absolute inset-0 grid-mesh"></div>
+
+    <div class="relative max-w-[1400px] mx-auto px-4 lg:px-8 pt-16 pb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+            <div class="lg:col-span-4">
+                <a href="{{ link('/') }}" class="flex items-center gap-2 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-purple to-purple-700 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <span class="font-display font-bold text-xl text-white">{{ store.name }}</span>
+                </a>
+
+                {% if store.description %}
+                    <p class="text-white/40 text-sm leading-relaxed mb-6 max-w-md">
+                        {{ store.description|raw }}
+                    </p>
+                {% endif %}
+
+                {% component 'footer.social' %}
+            </div>
+
+            <div class="lg:col-span-2">
+                {% component 'footer.menu' %}
+            </div>
+
+            <div class="lg:col-span-3">
+                {% component 'footer.contacts' %}
+            </div>
+
+            <div class="lg:col-span-3">
+                <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">
+                    {{ trans('blocks.footer.download_apps') }}
+                </h3>
+                {% component 'footer.mobile-apps' %}
+
+                <div class="mt-8">
+                    <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">
+                        {{ trans('common.elements.newsletter') }}
+                    </h3>
+                    <form class="flex gap-2" onsubmit="return false;">
+                        <input type="email"
+                               placeholder="{{ trans('common.elements.email_placeholder') }}"
+                               class="flex-1 glass-input text-sm py-2.5"/>
+                        <button type="submit" class="btn-primary text-sm py-2.5 px-4 whitespace-nowrap">
+                            {{ trans('common.elements.subscribe') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-white/[0.04] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-white/25 text-xs">
+                &copy; {{ 'now'|date('Y') }} {{ store.name }}. {{ trans('common.elements.all_rights_reserved') }}
+            </div>
+
+            <div class="flex items-center gap-6">
+                {% component 'footer.payment-methods' %}
+            </div>
+
+            {% if store.settings.tax.number %}
+            <div class="flex items-center gap-2 text-xs text-white/25">
+                <span>{{ trans('common.elements.tax_number') }}:</span>
+                <span class="text-white/40 font-mono">{{ store.settings.tax.number }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</footer>

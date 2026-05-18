@@ -1,0 +1,35 @@
+<section id="featured-products" class="max-w-[1400px] mx-auto px-4 lg:px-8">
+    <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-12" x-data="animateOnScroll">
+        <div>
+            <h2 class="section-title neon-text-purple">{{ title|default('Featured Products') }}</h2>
+            <p class="section-subtitle text-left mx-0">{{ subtitle|default('Hand-picked premium selections') }}</p>
+        </div>
+
+        <div class="flex gap-2">
+            <button @click="prev()"
+                    x-data="productSlider"
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/60 hover:text-white hover:border-neon-purple/30 transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button @click="next({{ store.featured_products|length }})"
+                    x-data="productSlider"
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/60 hover:text-white hover:border-neon-purple/30 transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div x-data="productSlider">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {% for product in store.featured_products|slice(0, 8) %}
+                <div x-data="animateOnScroll">
+                    {% include 'partials.product.card' with { product: product } %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

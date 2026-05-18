@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-main: 'Inter', 'Tajawal', system-ui, sans-serif;
+    --color-primary: #7c3aed;
+    --color-primary-dark: #5b21b6;
+    --color-primary-light: #a78bfa;
+    --color-primary-reverse: #ffffff;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.3);
+    border-radius: 3px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 58, 237, 0.5);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-950 text-white font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-neon-purple/30 text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glass;
+  }
+
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08] rounded-2xl shadow-card transition-all duration-500;
+  }
+
+  .glass-card:hover {
+    @apply border-neon-purple/30 shadow-card-hover -translate-y-1;
+  }
+
+  .glass-input {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-neon-purple/50 focus:ring-1 focus:ring-neon-purple/30 transition-all duration-300;
+  }
+
+  .neon-text-purple {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-neon-purple via-purple-400 to-neon-pink;
+  }
+
+  .neon-text-cyan {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-cyan-400 to-neon-blue;
+  }
+
+  .neon-border {
+    @apply border border-neon-purple/30 shadow-neon-purple;
+  }
+
+  .neon-border-cyan {
+    @apply border border-neon-cyan/30 shadow-neon-cyan;
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-neon-purple to-purple-600 text-white font-semibold py-3.5 px-8 rounded-xl transition-all duration-300 hover:shadow-neon-purple hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-primary::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full;
+    transition: transform 0.6s;
+  }
+
+  .btn-primary:hover::after {
+    @apply translate-x-full;
+  }
+
+  .btn-outline {
+    @apply relative overflow-hidden border border-neon-purple/40 text-neon-purple font-semibold py-3.5 px-8 rounded-xl transition-all duration-300 hover:bg-neon-purple/10 hover:border-neon-purple hover:shadow-neon-purple active:scale-[0.98];
+  }
+
+  .btn-cyan {
+    @apply relative overflow-hidden bg-gradient-to-r from-neon-cyan to-cyan-600 text-surface-950 font-semibold py-3.5 px-8 rounded-xl transition-all duration-300 hover:shadow-neon-cyan hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  .section-subtitle {
+    @apply text-white/50 text-lg mt-3 max-w-2xl mx-auto;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-sale {
+    @apply bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+
+  .badge-new {
+    @apply bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/30;
+  }
+
+  .badge-hot {
+    @apply bg-orange-500/20 text-orange-400 border border-orange-500/30;
+  }
+
+  .countdown-box {
+    @apply flex flex-col items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3 min-w-[70px];
+  }
+
+  .countdown-value {
+    @apply font-mono text-2xl md:text-3xl font-bold text-neon-purple;
+  }
+
+  .countdown-label {
+    @apply text-[10px] uppercase tracking-widest text-white/40 mt-1;
+  }
+
+  .shimmer-wrapper {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer-wrapper::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  .grid-mesh {
+    background-image:
+      linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .glow-dot {
+    @apply absolute rounded-full blur-xl opacity-50 animate-pulse-neon;
+  }
+
+  .floating-cart-btn {
+    @apply fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-gradient-to-br from-neon-purple to-purple-700 rounded-full shadow-neon-purple transition-all duration-300 hover:scale-110 active:scale-95;
+  }
+
+  .floating-cart-count {
+    @apply absolute -top-1 -right-1 flex items-center justify-center w-6 h-6 bg-neon-pink text-white text-xs font-bold rounded-full;
+  }
+
+  .search-overlay {
+    @apply fixed inset-0 z-[100] bg-surface-950/95 backdrop-blur-xl flex items-start justify-center pt-20 px-4 opacity-0 pointer-events-none transition-all duration-300;
+  }
+
+  .search-overlay.active {
+    @apply opacity-100 pointer-events-auto;
+  }
+
+  .mega-menu-dropdown {
+    @apply absolute top-full left-0 right-0 bg-surface-900/95 backdrop-blur-2xl border-t border-white/5 shadow-2xl opacity-0 invisible translate-y-2 transition-all duration-300;
+  }
+
+  .mega-menu-trigger:hover .mega-menu-dropdown,
+  .mega-menu-trigger:focus-within .mega-menu-dropdown {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700;
+  }
+
+  .animate-on-scroll.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Product Card Glassmorphism */
+  .product-card-glass {
+    @apply relative bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-500;
+  }
+
+  .product-card-glass:hover {
+    @apply border-neon-purple/20 shadow-card-hover;
+    transform: translateY(-4px);
+  }
+
+  .product-card-glass .product-image-wrapper {
+    @apply relative overflow-hidden aspect-square;
+  }
+
+  .product-card-glass .product-image-wrapper img {
+    @apply w-full h-full object-cover transition-transform duration-700;
+  }
+
+  .product-card-glass:hover .product-image-wrapper img {
+    @apply scale-110;
+  }
+
+  .product-card-glass .quick-actions {
+    @apply absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 translate-y-4 transition-all duration-300;
+  }
+
+  .product-card-glass:hover .quick-actions {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .product-card-glass .quick-action-btn {
+    @apply w-10 h-10 flex items-center justify-center bg-surface-900/80 backdrop-blur-md border border-white/10 rounded-full text-white/70 hover:text-neon-purple hover:border-neon-purple/40 transition-all duration-200;
+  }
+
+  /* Category Card Neon */
+  .category-card-neon {
+    @apply relative overflow-hidden rounded-2xl aspect-square cursor-pointer;
+  }
+
+  .category-card-neon .category-bg {
+    @apply absolute inset-0 bg-gradient-to-br from-surface-800 to-surface-900 transition-all duration-500;
+  }
+
+  .category-card-neon:hover .category-bg {
+    @apply from-neon-purple/20 to-purple-900/40;
+  }
+
+  .category-card-neon .category-glow {
+    @apply absolute -inset-1 opacity-0 transition-opacity duration-500 rounded-2xl;
+    background: radial-gradient(circle at center, rgba(180, 77, 255, 0.3), transparent 70%);
+  }
+
+  .category-card-neon:hover .category-glow {
+    @apply opacity-100;
+  }
+
+  .category-card-neon .category-content {
+    @apply absolute inset-0 flex flex-col items-center justify-center p-6 z-10;
+  }
+
+  .category-card-neon .category-icon {
+    @apply text-4xl mb-4 transition-all duration-500;
+  }
+
+  .category-card-neon:hover .category-icon {
+    @apply scale-110;
+    filter: drop-shadow(0 0 15px rgba(180, 77, 255, 0.6));
+  }
+
+  /* Header Animation */
+  .header-scrolled {
+    @apply bg-surface-950/80 backdrop-blur-2xl border-b border-white/5 shadow-2xl;
+  }
+
+  .nav-link {
+    @apply relative text-white/60 hover:text-white transition-colors duration-200 py-2 text-sm font-medium;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-neon-purple transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Testimonial Card */
+  .testimonial-card {
+    @apply relative bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl p-6 transition-all duration-500;
+  }
+
+  .testimonial-card:hover {
+    @apply border-neon-purple/20 shadow-card;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    @apply absolute top-4 left-6 text-6xl text-neon-purple/20 leading-none;
+    font-family: serif;
+  }
+
+  /* Trust Badge */
+  .trust-badge-item {
+    @apply flex flex-col items-center text-center p-6 rounded-2xl bg-white/[0.02] border border-white/[0.04] transition-all duration-300 hover:border-neon-purple/20 hover:bg-white/[0.04];
+  }
+
+  .trust-badge-item .badge-icon {
+    @apply text-3xl mb-3 text-neon-purple;
+  }
+
+  /* Countdown Timer Section */
+  .countdown-offer-bg {
+    background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+  }
+
+  /* Sticky Header */
+  .sticky-header {
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300;
+  }
+
+  /* Footer */
+  .footer-glow {
+    background: radial-gradient(ellipse at top center, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 60%, transparent 95%);
+    mask-image: linear-gradient(to right, black 60%, transparent 95%);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

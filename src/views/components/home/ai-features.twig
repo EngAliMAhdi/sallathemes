@@ -1,0 +1,70 @@
+<section class="relative py-16 overflow-hidden">
+    <div class="absolute inset-0 grid-mesh opacity-20"></div>
+
+    <div class="relative max-w-[1400px] mx-auto px-4 lg:px-8">
+        <div class="text-center mb-12" x-data="animateOnScroll">
+            <h2 class="section-title neon-text-cyan">{{ title|default('Powered by Next-Gen AI') }}</h2>
+            <p class="section-subtitle">{{ trans('common.elements.ai_subtitle') }}</p>
+        </div>
+
+        {% if features is defined and features|length > 0 %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" x-data="animateOnScroll">
+                {% for feature in features %}
+                    <div class="glass-card p-8 text-center group">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-neon-purple/10 border border-neon-purple/20 flex items-center justify-center group-hover:bg-neon-purple/20 transition-all">
+                            <i class="{{ feature.icon }} text-2xl text-neon-purple group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-white mb-3">{{ feature.title }}</h3>
+                        <p class="text-white/40 text-sm leading-relaxed">{{ feature.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" x-data="animateOnScroll">
+                <div class="glass-card p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-neon-purple/10 border border-neon-purple/20 flex items-center justify-center group-hover:bg-neon-purple/20 transition-all">
+                        <svg class="w-8 h-8 text-neon-purple group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                  d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-3">{{ trans('common.elements.ai_recommendations') }}</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">{{ trans('common.elements.ai_rec_desc') }}</p>
+                </div>
+
+                <div class="glass-card p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-neon-cyan/10 border border-neon-cyan/20 flex items-center justify-center group-hover:bg-neon-cyan/20 transition-all">
+                        <svg class="w-8 h-8 text-neon-cyan group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                  d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-3">{{ trans('common.elements.smart_search') }}</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">{{ trans('common.elements.smart_search_desc') }}</p>
+                </div>
+
+                <div class="glass-card p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-neon-pink/10 border border-neon-pink/20 flex items-center justify-center group-hover:bg-neon-pink/20 transition-all">
+                        <svg class="w-8 h-8 text-neon-pink group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-3">{{ trans('common.elements.instant_checkout') }}</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">{{ trans('common.elements.checkout_desc') }}</p>
+                </div>
+
+                <div class="glass-card p-8 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-neon-green/10 border border-neon-green/20 flex items-center justify-center group-hover:bg-neon-green/20 transition-all">
+                        <svg class="w-8 h-8 text-neon-green group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                  d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-3">{{ trans('common.elements.instant_delivery') }}</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">{{ trans('common.elements.delivery_desc') }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,270 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+{% component 'header.breadcrumbs' %}
+
+<article class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        <div x-data="productGallery" class="space-y-4">
+            <div class="relative aspect-square rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.06]"
+                 @mousemove="updateZoom($event)"
+                 @mouseleave="zoomed = false">
+                <div class="w-full h-full overflow-hidden"
+                     :style="zoomed ? `transform: scale(2); transform-origin: ${zoomX}% ${zoomY}%` : ''">
+                    {% for image in product.images %}
+                        <img x-show="activeImage === {{ loop.index0 }}"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0"
+                             x-transition:enter-end="opacity-100"
+                             src="{{ image.url }}"
+                             alt="{{ image.alt }}"
+                             class="w-full h-full object-cover cursor-zoom-in"
+                             @click="toggleZoom($event)"/>
+                    {% endfor %}
+                </div>
+
+                {% if product.images|length > 1 %}
+                <button @click="prevImage({{ product.images|length }})"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-surface-900/80 backdrop-blur-md border border-white/10 text-white/60 hover:text-white transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button @click="nextImage({{ product.images|length }})"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-surface-900/80 backdrop-blur-md border border-white/10 text-white/60 hover:text-white transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                {% endif %}
+            </div>
+
+            {% if product.images|length > 1 %}
+            <div class="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
+                {% for image in product.images %}
+                    <button @click="setImage({{ loop.index0 }})"
+                            class="w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all"
+                            :class="activeImage === {{ loop.index0 }} ? 'border-neon-purple' : 'border-transparent opacity-60 hover:opacity-100'">
+                        <img src="{{ image.url }}" alt="{{ image.alt }}" class="w-full h-full object-cover"/>
+                    </button>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="space-y-6">
+            {% if product.promotion_title %}
+                <span class="badge badge-new">{{ product.promotion_title }}</span>
+            {% endif %}
+
+            {% if product.brand %}
+                <div class="flex items-center gap-2 mb-2">
+                    <img src="{{ product.brand.logo }}" alt="{{ product.brand.name }}" class="w-6 h-6 object-contain"/>
+                    <span class="text-neon-purple text-sm">{{ product.brand.name }}</span>
+                </div>
+            {% endif %}
+
+            <h1 class="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
+                {{ product.name }}
+            </h1>
+
+            {% if product.subtitle %}
+                <p class="text-white/40 text-lg">{{ product.subtitle }}</p>
+            {% endif %}
+
+            {% if product.rating %}
+                <div class="flex items-center gap-2">
+                    <salla-rating-stars rating="{{ product.rating }}"></salla-rating-stars>
+                    <span class="text-white/30 text-sm">({{ product.total_reviews }} {{ trans('common.elements.reviews') }})</span>
+                </div>
+            {% endif %}
+
+            <div class="flex items-center gap-4 py-4 border-y border-white/[0.06]">
+                {% if product.on_sale %}
+                    <span class="text-neon-pink font-display font-bold text-3xl">{{ product.sale_price|money }}</span>
+                    <span class="text-white/25 line-through text-lg">{{ product.regular_price|money }}</span>
+                    <span class="badge badge-sale">{{ trans('common.elements.on_sale') }}</span>
+                {% else %}
+                    <span class="text-white font-display font-bold text-3xl">{{ product.price|money }}</span>
+                {% endif %}
+            </div>
+
+            {% if product.has_read_more %}
+                <div x-data="{ expanded: false }" class="text-white/50 text-sm leading-relaxed">
+                    <div :class="expanded ? '' : 'line-clamp-4'">
+                        {{ product.description|raw }}
+                    </div>
+                    <button @click="expanded = !expanded"
+                            class="text-neon-purple hover:text-neon-purple/80 transition-colors text-sm mt-2"
+                            x-text="expanded ? '{{ trans('pages.products.read_less') }}' : '{{ trans('pages.products.read_more') }}'">
+                    </button>
+                </div>
+            {% else %}
+                <div class="text-white/50 text-sm leading-relaxed">
+                    {{ product.description|raw }}
+                </div>
+            {% endif %}
+
+            <div id="product-form">
+                <form enctype="multipart/form-data" method="post"
+                      onchange="salla.product.getPrice(new FormData(event.currentTarget))"
+                      onsubmit="return salla.form.submit('cart.addItem');">
+
+                    <input name="id" type="hidden" value="{{ product.id }}"/>
+
+                    {% hook 'product:single.form.start' %}
+
+                    {% if product.options|length %}
+                        <div class="space-y-5 mt-6">
+                            {% for option_index, option in product.options %}
+                                {% if option.type in ["splitter"] %}
+                                    {{ option.element|raw }}
+                                {% else %}
+                                    <div>
+                                        {% if option.type != "donation" %}
+                                        <label class="block text-sm font-semibold text-white mb-2">
+                                            {{ option.name }}
+                                            {% if option.required %}<span class="text-neon-pink">*</span>{% endif %}
+                                        </label>
+                                        {% if option.placeholder %}
+                                            <small class="block text-white/30 text-xs mb-1.5">{{ option.placeholder }}</small>
+                                        {% endif %}
+                                        {% endif %}
+                                        {{ option.element(product.id)|raw }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if product.can_add_note or product.can_upload_file %}
+                        <div class="space-y-3 mt-6">
+                            <h4 class="text-sm font-semibold text-white">{{ trans('pages.products.attachments') }}</h4>
+                            <div class="flex gap-3">
+                                {% if product.can_add_note %}
+                                    <button type="button" data-show="note_{{ product.id }}"
+                                            class="btn-outline text-sm py-2 px-4">
+                                        {{ trans('pages.products.add_note') }}
+                                    </button>
+                                {% endif %}
+                                {% if product.can_upload_file %}
+                                    <button type="button" data-show="file_{{ product.id }}"
+                                            class="btn-outline text-sm py-2 px-4">
+                                        {{ trans('pages.products.add_file') }}
+                                    </button>
+                                {% endif %}
+                            </div>
+                            {% if product.can_add_note %}
+                                <textarea cols="30" name="notes" rows="4" class="glass-input w-full text-sm"
+                                          placeholder="{{ trans('pages.products.notes_placeholder') }}">{{ product.notes }}</textarea>
+                            {% endif %}
+                            {% if product.can_upload_file %}
+                                <input name="{{ is_cart?'image_file':'file' }}" type="file"
+                                       data-url="{{ link('cart/image') }}" data-instant-upload=""
+                                       data-files="{{ product.attachments }}" data-item-id="{{ product.id }}"
+                                       data-max-file-size="3MB" class="text-sm text-white/40"/>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    {% hook 'product:single.form.end' %}
+
+                    <div class="flex items-center gap-6 mt-6 py-4 border-t border-white/[0.06]">
+                        <div>
+                            {% if not product.is_hidden_quantity %}
+                                <label class="block text-xs text-white/30 mb-2">{{ trans('pages.products.quantity') }}</label>
+                                <salla-quantity-input max="{{ product.max_quantity }}" value="1" name="quantity">
+                                </salla-quantity-input>
+                            {% else %}
+                                <input name="quantity" type="hidden" value="1"/>
+                            {% endif %}
+                        </div>
+
+                        <div class="flex-1">
+                            <salla-add-product-button product-id="{{ product.id }}"
+                                                      product-status="{{ product.status }}"
+                                                      product-type="{{ product.type }}"
+                                                      class="w-full">
+                            </salla-add-product-button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            {% if product.tags|length %}
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]">
+                    {% for tag in product.tags %}
+                        <a href="{{ tag.url }}" class="px-3 py-1.5 bg-white/[0.02] border border-white/[0.06] rounded-full text-xs text-white/40 hover:text-neon-purple hover:border-neon-purple/30 transition-all">
+                            {{ tag.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if product.has_metadata %}
+                <div class="pt-4">
+                    <salla-metadata></salla-metadata>
+                </div>
+            {% endif %}
+
+            <div class="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+                <span class="text-xs text-white/30">{{ trans('common.elements.share') }}:</span>
+                <salla-social-share></salla-social-share>
+            </div>
+        </div>
+    </div>
+
+    {% hook 'product:single.description.start' %}
+
+    {% if product.description_long %}
+        <div class="mt-16 glass-card p-8 md:p-12">
+            <h2 class="font-display text-2xl font-bold text-white mb-6">{{ trans('common.elements.product_details') }}</h2>
+            <div class="text-white/50 leading-relaxed prose prose-invert max-w-none">
+                {{ product.description_long|raw }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% hook 'product:single.description.end' %}
+
+    <div class="mt-12">
+        {% component 'comments' %}
+    </div>
+
+    <div class="mt-12">
+        <h2 class="font-display text-2xl font-bold text-white mb-8">{{ trans('common.elements.similar_products') }}</h2>
+        {% component 'product.similar-products' %}
+    </div>
+</article>
+
+<div x-data="stickyAddToCart" x-show="visible"
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0 translate-y-4"
+     x-transition:enter-end="opacity-100 translate-y-0"
+     class="fixed bottom-0 left-0 right-0 z-40 glass border-t border-white/10 py-3 px-4">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 min-w-0">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0"/>
+            <div class="min-w-0">
+                <p class="text-white font-medium text-sm truncate">{{ product.name }}</p>
+                <div class="flex items-center gap-2">
+                    {% if product.on_sale %}
+                        <span class="text-neon-pink font-bold text-sm">{{ product.sale_price|money }}</span>
+                        <span class="text-white/25 line-through text-xs">{{ product.regular_price|money }}</span>
+                    {% else %}
+                        <span class="text-white font-bold text-sm">{{ product.price|money }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <salla-add-product-button product-id="{{ product.id }}"
+                                  product-status="{{ product.status }}"
+                                  product-type="{{ product.type }}">
+        </salla-add-product-button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" defer src="{{ asset('dist/product.js') }}"></script>
+{% endblock %}

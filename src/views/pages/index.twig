@@ -1,0 +1,41 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+<div class="-mt-[var(--header-height,80px)]">
+    {% component "home.hero-banner" %}
+</div>
+
+<div class="relative z-10 space-y-20 pb-20">
+    {% if theme.settings.get('show_flash_sales') %}
+        {% component "home.flash-sales" %}
+    {% endif %}
+
+    {% component home %}
+
+    {% if theme.settings.get('show_categories_grid') %}
+        {% component "home.categories-grid" %}
+    {% endif %}
+
+    {% component "home.featured-products" %}
+
+    {% component "home.countdown-offer" %}
+
+    {% component "home.ai-features" %}
+
+    {% if theme.settings.get('show_testimonials') %}
+        {% component "home.testimonials" %}
+    {% endif %}
+
+    {% if theme.settings.get('show_trust_badges') %}
+        {% component "home.trust-badges" %}
+    {% endif %}
+
+    {% if theme.settings.get('show_payment_methods') %}
+        {% component "home.payment-methods-section" %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" defer src="{{ asset('dist/home.js') }}"></script>
+{% endblock %}

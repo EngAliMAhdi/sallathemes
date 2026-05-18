@@ -1,0 +1,24 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12">
+    <h1 class="font-display text-3xl font-bold text-white mb-8">{{ trans('common.elements.wishlist') }}</h1>
+
+    {% if wishlist|length > 0 %}
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {% for item in wishlist %}
+                {% include 'partials.product.card' with { product: item.product } %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-16 glass-card">
+            <svg class="w-16 h-16 mx-auto mb-4 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <h3 class="text-white/40 font-semibold mb-2">{{ trans('common.elements.empty_wishlist') }}</h3>
+            <p class="text-white/25 text-sm mb-6">{{ trans('common.elements.empty_wishlist_desc') }}</p>
+            <a href="{{ link('/') }}" class="btn-primary text-sm">{{ trans('common.elements.browse_products') }}</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

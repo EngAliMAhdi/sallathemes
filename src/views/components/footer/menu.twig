@@ -1,0 +1,23 @@
+{% set is_header = is_header|default(false) %}
+
+{% if is_header %}
+    {% if items|length %}
+        {% for key, item in items|slice(0, 3) %}
+            <a href="{{ item.url }}" class="hover:text-white/60 transition-colors">{{ item.title }}</a>
+        {% endfor %}
+    {% endif %}
+{% else %}
+    <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">
+        {{ trans('blocks.footer.pages_links') }}
+    </h3>
+    <ul class="space-y-2.5">
+        {% for item in items %}
+            <li>
+                <a href="{{ item.url }}" class="text-white/40 hover:text-neon-purple transition-colors text-sm flex items-center gap-2 group">
+                    <span class="w-1 h-1 rounded-full bg-white/20 group-hover:bg-neon-purple group-hover:w-2 transition-all"></span>
+                    {{ item.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

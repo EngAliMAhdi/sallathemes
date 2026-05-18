@@ -1,0 +1,29 @@
+{
+  "name": "twilight-theme-salla",
+  "version": "1.0.0",
+  "description": "Futuristic premium Salla Twilight ecommerce theme - Dark luxury gaming style",
+  "author": "Salla Partner",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "theme:preview": "salla theme preview"
+  },
+  "devDependencies": {
+    "@salla.sa/twilight-tailwind-theme": "latest",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "postcss-import": "^16.1.0",
+    "tailwindcss": "^3.4.13",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "mini-css-extract-plugin": "^2.9.1",
+    "postcss-loader": "^8.1.1"
+  },
+  "dependencies": {
+    "@salla.sa/twilight-components": "latest",
+    "alpinejs": "^3.14.1"
+  }
+}

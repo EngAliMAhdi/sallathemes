@@ -1,0 +1,456 @@
+{
+  "version": "1.0.0",
+  "theme_name": "NOVA - Futuristic Premium",
+  "repo_url": "",
+  "support_url": "",
+  "settings": [
+    {
+      "type": "boolean",
+      "label": "Enable Dark Mode",
+      "id": "dark_mode_enabled",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "string",
+      "id": "placeholder",
+      "format": "hidden",
+      "value": "images/img_placeholder.png"
+    },
+    {
+      "type": "string",
+      "id": "accent_color",
+      "format": "color",
+      "label": "Accent Color",
+      "value": "#7c3aed"
+    },
+    {
+      "type": "string",
+      "id": "accent_color_secondary",
+      "format": "color",
+      "label": "Secondary Accent Color",
+      "value": "#06b6d4"
+    },
+    {
+      "type": "boolean",
+      "label": "Show Hero Banner",
+      "id": "show_hero_banner",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Show Flash Sales",
+      "id": "show_flash_sales",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Show Categories Grid",
+      "id": "show_categories_grid",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Show Testimonials",
+      "id": "show_testimonials",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Show Trust Badges",
+      "id": "show_trust_badges",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Show Payment Methods",
+      "id": "show_payment_methods",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Sticky Header",
+      "id": "sticky_header",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Floating Cart",
+      "id": "floating_cart",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "label": "Smart Search Overlay",
+      "id": "smart_search_overlay",
+      "format": "switch",
+      "selected": true
+    },
+    {
+      "type": "string",
+      "id": "header_layout",
+      "format": "select",
+      "label": "Header Layout",
+      "options": [
+        { "id": "default", "label": "Default" },
+        { "id": "centered", "label": "Centered" },
+        { "id": "split", "label": "Split" }
+      ],
+      "value": "default"
+    }
+  ],
+  "features": [
+    "component-featured-products",
+    "component-fixed-banner",
+    "component-fixed-products",
+    "component-photos-slider",
+    "component-products-slider",
+    "component-testimonials",
+    "component-store-features",
+    "component-youtube",
+    "filters"
+  ],
+  "components": [
+    {
+      "name": "hero-banner",
+      "title": "Hero Banner",
+      "icon": "sicon-image",
+      "path": "home.hero-banner",
+      "fields": [
+        {
+          "id": "slides",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 5,
+          "fields": [
+            {
+              "id": "image",
+              "type": "string",
+              "format": "image",
+              "required": true
+            },
+            {
+              "id": "mobile_image",
+              "type": "string",
+              "format": "image"
+            },
+            {
+              "id": "title",
+              "type": "string",
+              "label": "Title"
+            },
+            {
+              "id": "subtitle",
+              "type": "string",
+              "format": "textarea",
+              "label": "Subtitle"
+            },
+            {
+              "id": "button_text",
+              "type": "string",
+              "label": "Button Text"
+            },
+            {
+              "id": "button_url",
+              "type": "string",
+              "label": "Button URL"
+            },
+            {
+              "id": "badge_text",
+              "type": "string",
+              "label": "Badge Text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "flash-sales",
+      "title": "Flash Sales",
+      "icon": "sicon-flash",
+      "path": "home.flash-sales",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Section Title",
+          "value": "Flash Sales"
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "label": "Section Subtitle",
+          "value": "Limited time offers - grab them before they're gone!"
+        },
+        {
+          "id": "end_date",
+          "type": "string",
+          "format": "datetime",
+          "label": "End Date",
+          "required": true
+        },
+        {
+          "id": "background_color",
+          "type": "string",
+          "format": "color",
+          "label": "Background Color",
+          "value": "#0f001a"
+        }
+      ]
+    },
+    {
+      "name": "categories-grid",
+      "title": "Categories Grid",
+      "icon": "sicon-grid",
+      "path": "home.categories-grid",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Section Title",
+          "value": "Shop by Category"
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "label": "Section Subtitle",
+          "value": "Explore our premium collection"
+        }
+      ]
+    },
+    {
+      "name": "featured-products-slider",
+      "title": "Featured Products Slider",
+      "icon": "sicon-star",
+      "path": "home.featured-products",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Section Title",
+          "value": "Featured Products"
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "label": "Section Subtitle",
+          "value": "Hand-picked premium selections"
+        },
+        {
+          "id": "layout",
+          "type": "string",
+          "format": "select",
+          "label": "Layout",
+          "options": [
+            { "id": "slider", "label": "Slider" },
+            { "id": "grid", "label": "Grid" }
+          ],
+          "value": "slider"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-section",
+      "title": "Testimonials",
+      "icon": "sicon-chat",
+      "path": "home.testimonials",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Section Title",
+          "value": "What Gamers Say"
+        },
+        {
+          "id": "testimonials",
+          "type": "collection",
+          "format": "collection",
+          "minLength": 1,
+          "maxLength": 10,
+          "fields": [
+            {
+              "id": "name",
+              "type": "string",
+              "label": "Name",
+              "required": true
+            },
+            {
+              "id": "role",
+              "type": "string",
+              "label": "Role / Title"
+            },
+            {
+              "id": "avatar",
+              "type": "string",
+              "format": "image",
+              "label": "Avatar"
+            },
+            {
+              "id": "content",
+              "type": "string",
+              "format": "textarea",
+              "label": "Testimonial",
+              "required": true
+            },
+            {
+              "id": "rating",
+              "type": "string",
+              "format": "number",
+              "label": "Rating (1-5)",
+              "value": "5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "trust-badges-section",
+      "title": "Trust Badges",
+      "icon": "sicon-shield-check",
+      "path": "home.trust-badges",
+      "fields": [
+        {
+          "id": "badges",
+          "type": "collection",
+          "format": "collection",
+          "minLength": 1,
+          "maxLength": 6,
+          "fields": [
+            {
+              "id": "icon",
+              "type": "string",
+              "label": "Icon Class (sicon-*)",
+              "required": true
+            },
+            {
+              "id": "title",
+              "type": "string",
+              "label": "Title",
+              "required": true
+            },
+            {
+              "id": "description",
+              "type": "string",
+              "label": "Description"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "countdown-offer-section",
+      "title": "Countdown Offer",
+      "icon": "sicon-clock",
+      "path": "home.countdown-offer",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Offer Title",
+          "value": "Limited Time Mega Deal"
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "label": "Offer Subtitle",
+          "value": "Don't miss out on this exclusive offer"
+        },
+        {
+          "id": "end_date",
+          "type": "string",
+          "format": "datetime",
+          "label": "End Date",
+          "required": true
+        },
+        {
+          "id": "button_text",
+          "type": "string",
+          "label": "Button Text",
+          "value": "Shop Now"
+        },
+        {
+          "id": "button_url",
+          "type": "string",
+          "label": "Button URL"
+        },
+        {
+          "id": "background_color",
+          "type": "string",
+          "format": "color",
+          "label": "Background Color",
+          "value": "#0f001a"
+        }
+      ]
+    },
+    {
+      "name": "payment-methods-section",
+      "title": "Payment Methods",
+      "icon": "sicon-credit-card",
+      "path": "home.payment-methods-section",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Section Title",
+          "value": "Secure Payment Methods"
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "label": "Section Subtitle",
+          "value": "100% secure & encrypted transactions"
+        }
+      ]
+    },
+    {
+      "name": "ai-features-section",
+      "title": "AI Features",
+      "icon": "sicon-cpu",
+      "path": "home.ai-features",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": "Section Title",
+          "value": "Powered by Next-Gen AI"
+        },
+        {
+          "id": "features",
+          "type": "collection",
+          "format": "collection",
+          "minLength": 1,
+          "maxLength": 4,
+          "fields": [
+            {
+              "id": "title",
+              "type": "string",
+              "label": "Feature Title",
+              "required": true
+            },
+            {
+              "id": "description",
+              "type": "string",
+              "format": "textarea",
+              "label": "Feature Description"
+            },
+            {
+              "id": "icon",
+              "type": "string",
+              "label": "Icon Class (sicon-*)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

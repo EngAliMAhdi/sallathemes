@@ -1,0 +1,29 @@
+{% set is_header = is_header|default(false) %}
+
+{% if is_header %}
+    {% for contact in contacts|filter(contact => contact.type in ['email', 'phone']) %}
+        <a href="{{ contact.url }}" class="hover:text-white/60 transition-colors">
+            {% if contact.type == 'email' %}
+                {{ contact.value }}
+            {% else %}
+                {{ contact.value }}
+            {% endif %}
+        </a>
+    {% endfor %}
+{% else %}
+    <h3 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">
+        {{ trans('blocks.footer.social') }}
+    </h3>
+    <ul class="space-y-3">
+        {% for contact in contacts %}
+            <li>
+                <a href="{{ contact.url }}" class="flex items-center gap-3 text-white/40 hover:text-neon-purple transition-colors group text-sm">
+                    <span class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/[0.03] border border-white/[0.04] group-hover:border-neon-purple/20 group-hover:bg-neon-purple/5 transition-all">
+                        <i class="{{ contact.icon }} text-base"></i>
+                    </span>
+                    <span>{{ contact.value }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

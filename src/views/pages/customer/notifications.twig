@@ -1,0 +1,33 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12">
+    <h1 class="font-display text-3xl font-bold text-white mb-8">{{ trans('common.elements.notifications') }}</h1>
+
+    {% if notifications|length > 0 %}
+        <div class="space-y-3">
+            {% for notification in notifications %}
+                <div class="glass-card p-4 md:p-6 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-neon-purple/10 border border-neon-purple/20 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-white text-sm font-semibold">{{ notification.title }}</h4>
+                        <p class="text-white/40 text-sm mt-1">{{ notification.body }}</p>
+                        <span class="text-white/20 text-xs mt-2 block">{{ notification.created_at }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-16 glass-card">
+            <svg class="w-16 h-16 mx-auto mb-4 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+            <h3 class="text-white/40 font-semibold">{{ trans('common.elements.no_notifications') }}</h3>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

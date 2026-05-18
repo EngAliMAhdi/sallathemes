@@ -1,0 +1,11 @@
+<salla-slider type="products"
+              show-controls
+              show-dots
+              autoplay
+              class="w-full">
+    {% for product in products %}
+        <div class="px-2">
+            {% include 'partials.product.card' with { product: product } %}
+        </div>
+    {% endfor %}
+</salla-slider>

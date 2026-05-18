@@ -1,0 +1,36 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12">
+    <div class="text-center mb-12" x-data="animateOnScroll">
+        <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">{{ trans('common.elements.loyalty') }}</h1>
+    </div>
+
+    <div class="max-w-xl mx-auto mb-12">
+        <div class="glass-card p-8 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center">
+                <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <h2 class="font-display text-2xl font-bold text-white mb-2">{{ user.loyalty_points|default(0) }}</h2>
+            <p class="text-white/40 text-sm">{{ trans('common.elements.loyalty_points') }}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 text-center">
+            <h3 class="text-white font-semibold mb-2">{{ trans('common.elements.earn_points') }}</h3>
+            <p class="text-white/40 text-sm">Earn points with every purchase and redeem them for discounts.</p>
+        </div>
+        <div class="glass-card p-6 text-center">
+            <h3 class="text-white font-semibold mb-2">{{ trans('common.elements.redeem') }}</h3>
+            <p class="text-white/40 text-sm">Redeem your points at checkout for exclusive discounts.</p>
+        </div>
+        <div class="glass-card p-6 text-center">
+            <h3 class="text-white font-semibold mb-2">VIP Rewards</h3>
+            <p class="text-white/40 text-sm">Unlock VIP tiers and get access to exclusive deals and perks.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

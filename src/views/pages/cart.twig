@@ -1,0 +1,141 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+{% component 'header.breadcrumbs' %}
+
+<section class="max-w-[1400px] mx-auto px-4 lg:px-8 py-8 md:py-12" x-data="cartPage">
+    <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-8">{{ trans('common.elements.cart') }}</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-4">
+            <form onsubmit="return salla.form.submit('cart.update');">
+                {% for item in cart.items %}
+                    <div class="glass-card p-4 md:p-6 flex gap-4">
+                        <a href="{{ item.product.url }}" class="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 rounded-xl overflow-hidden bg-white/5">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover"/>
+                        </a>
+
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between gap-4">
+                                <div>
+                                    <a href="{{ item.product.url }}" class="text-white font-semibold hover:text-neon-purple transition-colors line-clamp-1">
+                                        {{ item.product.name }}
+                                    </a>
+                                    {% if item.product.subtitle %}
+                                        <p class="text-white/30 text-xs mt-0.5 line-clamp-1">{{ item.product.subtitle }}</p>
+                                    {% endif %}
+                                </div>
+                                <button type="button"
+                                        class="text-white/20 hover:text-red-400 transition-colors flex-shrink-0"
+                                        title="{{ trans('common.elements.remove') }}">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center justify-between mt-4">
+                                <salla-quantity-input value="{{ item.quantity }}" name="quantities[{{ item.id }}]"
+                                                      max="{{ item.product.max_quantity }}">
+                                </salla-quantity-input>
+
+                                <div class="text-right">
+                                    {% if item.product.on_sale %}
+                                        <span class="text-neon-pink font-bold">{{ item.product.sale_price|money }}</span>
+                                    {% else %}
+                                        <span class="text-white font-bold">{{ item.product.price|money }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="text-center py-16">
+                        <svg class="w-24 h-24 mx-auto mb-6 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/>
+                        </svg>
+                        <h2 class="text-xl font-semibold text-white/40 mb-2">{{ trans('common.elements.empty_cart') }}</h2>
+                        <p class="text-white/25 text-sm mb-8">{{ trans('common.elements.empty_cart_desc') }}</p>
+                        <a href="{{ link('/') }}" class="btn-primary">{{ trans('common.elements.start_shopping') }}</a>
+                    </div>
+                {% endfor %}
+
+                {% if cart.items|length > 0 %}
+                    <div class="flex justify-between pt-4">
+                        <a href="{{ link('/') }}" class="btn-outline text-sm">
+                            {{ trans('common.elements.continue_shopping') }}
+                        </a>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+
+        {% if cart.items|length > 0 %}
+        <div class="lg:col-span-1">
+            <div class="glass-card p-6 sticky top-24">
+                <h3 class="font-display font-bold text-lg text-white mb-6">{{ trans('common.elements.order_summary') }}</h3>
+
+                <div class="space-y-3 text-sm mb-6">
+                    <div class="flex justify-between">
+                        <span class="text-white/40">{{ trans('common.elements.subtotal') }}</span>
+                        <span class="text-white">{{ cart.subtotal|money }}</span>
+                    </div>
+                    {% if cart.shipping_cost is defined %}
+                    <div class="flex justify-between">
+                        <span class="text-white/40">{{ trans('common.elements.shipping') }}</span>
+                        <span class="text-white">{{ cart.shipping_cost|money }}</span>
+                    </div>
+                    {% endif %}
+                    {% if cart.discount > 0 %}
+                    <div class="flex justify-between">
+                        <span class="text-neon-green">{{ trans('common.elements.discount') }}</span>
+                        <span class="text-neon-green">-{{ cart.discount|money }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="border-t border-white/[0.08] pt-3 mb-6">
+                    <div class="flex justify-between">
+                        <span class="text-white font-semibold">{{ trans('common.elements.total') }}</span>
+                        <span class="text-white font-display font-bold text-xl">{{ cart.total|money }}</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex gap-2">
+                        <input type="text" x-model="couponCode"
+                               placeholder="{{ trans('common.elements.coupon_code') }}"
+                               class="flex-1 glass-input text-sm py-2.5"/>
+                        <button @click="applyCoupon()" class="btn-outline text-sm py-2.5 px-4 whitespace-nowrap">
+                            {{ trans('common.elements.apply') }}
+                        </button>
+                    </div>
+                    <div x-show="couponApplied"
+                         x-transition
+                         class="text-neon-green text-xs flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd"/>
+                        </svg>
+                        {{ trans('common.elements.coupon_applied') }}
+                    </div>
+                </div>
+
+                <a href="{{ link('checkout') }}" class="btn-primary w-full text-center mt-6 block">
+                    {{ trans('common.elements.proceed_to_checkout') }}
+                </a>
+
+                <div class="mt-6 text-center">
+                    <p class="text-white/25 text-xs mb-3">{{ trans('common.elements.we_accept') }}</p>
+                    {% component 'footer.payment-methods' %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" defer src="{{ asset('dist/cart.js') }}"></script>
+{% endblock %}
