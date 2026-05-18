@@ -1,0 +1,85 @@
+/* ============================================
+   NOVA Epic Gaming Dark Theme
+   Neon + Glass + Glow Effects
+   ============================================ */
+
+/* Dark Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,.02); }
+::-webkit-scrollbar-thumb { background: rgba(147,51,234,.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(147,51,234,.4); }
+
+/* Dark Body Override */
+body.theme-raed { background-color: #0a0014 !important; color: #fff; }
+
+/* Neon Glow Effects */
+.nova-glow-purple { box-shadow: 0 0 30px rgba(147,51,234,.3), 0 0 80px rgba(147,51,234,.1); }
+.nova-glow-cyan { box-shadow: 0 0 30px rgba(6,182,212,.3), 0 0 80px rgba(6,182,212,.1); }
+
+/* Gradient Text */
+.nova-text-gradient {
+  background: linear-gradient(135deg, #a855f7, #06b6d4, #ec4899);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* Animate on scroll reveal for blocks */
+.s-block--nova-hero [class*="swiper-slide"] h2,
+.s-block--nova-hero [class*="swiper-slide"] p,
+.s-block--nova-hero [class*="swiper-slide"] a {
+  animation: novaFadeUp .8s cubic-bezier(.4,0,.2,1) both;
+}
+.s-block--nova-hero [class*="swiper-slide"] p { animation-delay: .15s; }
+.s-block--nova-hero [class*="swiper-slide"] a { animation-delay: .3s; }
+
+@keyframes novaFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Category Card Hover Glow */
+.s-block--nova-cats a {
+  position: relative;
+}
+.s-block--nova-cats a::after {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, rgba(147,51,234,.25), transparent 70%);
+  opacity: 0; transition: opacity .4s; z-index: -1;
+}
+.s-block--nova-cats a:hover::after { opacity: 1; }
+
+/* Countdown Box */
+.s-block--nova-flash [data-days],
+.s-block--nova-flash [data-hours],
+.s-block--nova-flash [data-mins],
+.s-block--nova-flash [data-secs] {
+  background: linear-gradient(180deg, #a855f7, #ec4899);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* Theme Overrides - Dark Mode */
+.top-navbar { background: rgba(10,0,20,.95) !important; border-bottom:1px solid rgba(255,255,255,.04); }
+.main-nav-container { background: rgba(10,0,20,.98) !important; border-bottom:1px solid rgba(255,255,255,.04); }
+.main-nav-container .btn--rounded-gray,
+.top-navbar .btn--rounded-gray { background: rgba(255,255,255,.05) !important; color: rgba(255,255,255,.6) !important; }
+.store-footer { background: rgba(10,0,20,.98) !important; border-top:1px solid rgba(255,255,255,.04); }
+.store-footer h3, .store-footer p, .store-footer span { color: rgba(255,255,255,.7); }
+.store-footer a { color: rgba(255,255,255,.5); }
+.store-footer a:hover { color: #a855f7; }
+.copyright-text, .copyright-text span { color: rgba(255,255,255,.25) !important; }
+
+/* Product Card Enhancements */
+custom-salla-product-card { border-radius: 1rem; overflow: hidden; }
+
+/* Pulse Button */
+.s-block--nova-hero a[class*="bg-gradient"] {
+  position: relative;
+}
+.s-block--nova-hero a[class*="bg-gradient"]::before {
+  content: ''; position: absolute; inset: -3px; border-radius: inherit;
+  background: linear-gradient(135deg, #a855f7, #06b6d4); z-index: -1;
+  animation: novaPulse 2s ease-out infinite;
+}
+@keyframes novaPulse {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.06); }
+}

@@ -1,0 +1,24 @@
+{# NOVA Epic Hero Slider #}
+<section class="s-block--nova-hero relative">
+    <salla-slider id="nova-hero-{{ position }}" auto-play type="fullwidth" static-when-single show-controls="false" show-dots="true">
+        <div slot="items">
+            {% for slide in component.slides %}
+                <div class="swiper-slide w-full min-h-[85vh] bg-[#0a0014] relative flex items-center">
+                    <div class="absolute inset-0">
+                        <img src="{{ slide.image }}" alt="{{ slide.title }}" class="w-full h-full object-cover hidden md:block"/>
+                        <img src="{{ slide.mobile_image|default(slide.image) }}" alt="{{ slide.title }}" class="w-full h-full object-cover md:hidden"/>
+                    </div>
+                    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 30% 50%,rgba(180,77,255,.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(0,229,255,.08) 0%,transparent 60%)"></div>
+                    <div class="container relative z-10">
+                        <div class="max-w-xl">
+                            {% if slide.badge %}<span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-400 text-xs font-bold uppercase tracking-wider mb-4">{{ slide.badge }}</span>{% endif %}
+                            {% if slide.title %}<h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-none" style="text-shadow:0.05em 0 0 rgba(180,77,255,.5),-0.05em -0.025em 0 rgba(0,229,255,.5)">{{ slide.title }}</h2>{% endif %}
+                            {% if slide.subtitle %}<p class="text-white/50 text-lg md:text-xl mb-8 leading-relaxed">{{ slide.subtitle }}</p>{% endif %}
+                            {% if slide.btn_url and slide.btn_text %}<a href="{{ slide.btn_url }}" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 text-lg hover:scale-105">{{ slide.btn_text }} <i class="sicon-arrow-left rtl:rotate-180"></i></a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </salla-slider>
+</section>

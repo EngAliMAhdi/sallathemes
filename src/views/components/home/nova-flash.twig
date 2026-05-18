@@ -1,0 +1,32 @@
+{# NOVA Flash Deals Countdown #}
+<section class="s-block--nova-flash py-16 relative overflow-hidden" id="nova-flash-{{ position }}">
+    <div class="absolute inset-0 bg-gradient-to-r from-purple-950/20 via-black to-fuchsia-950/20 pointer-events-none"></div>
+    <div class="container relative">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><i class="sicon-flash text-red-400 text-xl"></i></div>
+                <div><h2 class="text-2xl md:text-3xl font-bold text-white">{{ component.title }}</h2></div>
+            </div>
+            {% if component.end_date %}
+            <div id="nova-cd-{{ position }}" class="flex gap-3" data-end="{{ component.end_date }}">
+                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-center min-w-[70px] backdrop-blur-sm"><span class="font-mono text-2xl font-bold text-purple-400" data-days>00</span><p class="text-white/25 text-[10px] uppercase tracking-widest mt-1">Days</p></div>
+                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-center min-w-[70px] backdrop-blur-sm"><span class="font-mono text-2xl font-bold text-purple-400" data-hours>00</span><p class="text-white/25 text-[10px] uppercase tracking-widest mt-1">Hrs</p></div>
+                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-center min-w-[70px] backdrop-blur-sm"><span class="font-mono text-2xl font-bold text-purple-400" data-mins>00</span><p class="text-white/25 text-[10px] uppercase tracking-widest mt-1">Min</p></div>
+                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-center min-w-[70px] backdrop-blur-sm"><span class="font-mono text-2xl font-bold text-purple-400" data-secs>00</span><p class="text-white/25 text-[10px] uppercase tracking-widest mt-1">Sec</p></div>
+            </div>
+            {% endif %}
+        </div>
+        {% if component.products is defined and component.products|length %}
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for product in component.products %}<custom-salla-product-card product="{{ product }}"></custom-salla-product-card>{% endfor %}
+            </div>
+        {% else %}
+            <salla-products-list source="on-sale" limit="4"></salla-products-list>
+        {% endif %}
+    </div>
+</section>
+{% if component.end_date %}
+<script>
+(function(){var c=document.getElementById('nova-cd-{{ position }}');if(!c)return;var e=new Date('{{ component.end_date }}').getTime();var ds=c.querySelector('[data-days]'),hs=c.querySelector('[data-hours]'),ms=c.querySelector('[data-mins]'),ss=c.querySelector('[data-secs]');function t(){var n=Date.now(),d=e-n;if(d<=0){c.innerHTML='<span class="inline-flex px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-bold">انتهى العرض</span>';return}ds.textContent=String(Math.floor(d/864e5)).padStart(2,'0');hs.textContent=String(Math.floor((d%864e5)/36e5)).padStart(2,'0');ms.textContent=String(Math.floor((d%36e5)/6e4)).padStart(2,'0');ss.textContent=String(Math.floor((d%6e4)/1e3)).padStart(2,'0')}t();setInterval(t,1e3)})();
+</script>
+{% endif %}

@@ -1,9 +1,0 @@
-{% set is_mobile = is_mobile|default(false) %}
-
-{% if is_mobile %}
-{% include 'partials.product.card' with { product: product } %}
-{% else %}
-<salla-product-card shadow-on-hover product="{{product}}">
-    {% include 'partials.product.card' with { product: product } %}
-</salla-product-card>
-{% endif %}
