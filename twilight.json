@@ -1,38 +1,92 @@
 {
     "name": {
-        "ar": "نوفا - مستقبلية مميزة",
-        "en": "NOVA - Futuristic Premium"
+        "ar": "نوفا - Epic Gaming",
+        "en": "NOVA - Epic Gaming"
     },
-    "version": "1.0.0",
     "repository": "https://github.com/EngAliMAhdi/sallathemes",
-    "author_email": "",
-    "support_url": "",
-    "description": {
-        "ar": "ثيم مستقبلي فاخر بتصميم داكن يناسب المنتجات الرقمية والألعاب، مع تأثيرات زجاجية ونيون وتجربة تسوق سلسة",
-        "en": "A futuristic premium dark theme for digital products and gaming, featuring glassmorphism, neon effects, and a smooth shopping experience"
-    },
+    "author_email": "eng.aliosama.mahdi@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
         "color",
         "breadcrumb",
         "unite-cards-height",
-        "menu-images",
         "component-featured-products",
         "component-fixed-banner",
         "component-fixed-products",
         "component-products-slider",
         "component-photos-slider",
+        "component-parallax-background",
         "component-testimonials",
+        "component-square-photos",
         "component-store-features",
         "component-youtube",
+        "component-latest-products",
+        "menu-images",
         "filters"
     ],
     "settings": [
         {
+            "id": "header_is_sticky",
+            "label": "تثبيت القائمة العلوية",
             "type": "boolean",
-            "label": "تفعيل الوضع الداكن",
-            "id": "dark_mode_enabled",
+            "icon": "sicon-toggle-off",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "شريط علوي داكن",
+            "id": "topnav_is_dark",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض الروابط الهامة في الشريط العلوي",
+            "id": "important_links",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "الوضع الداكن",
+            "id": "footer_is_dark",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تثبيت زر الإضافة والكمية أسفل الجوال",
+            "id": "sticky_add_to_cart",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار قسم الألعاب المميزة",
+            "id": "show_gaming_sections",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار قسم أحدث المنتجات",
+            "id": "show_latest_products",
+            "format": "switch",
+            "value": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل المؤثرات الحركية",
+            "id": "enable_animations",
             "format": "switch",
             "value": true
         },
@@ -40,137 +94,18 @@
             "type": "string",
             "id": "placeholder",
             "format": "hidden",
-            "value": "images/img_placeholder.png"
-        },
-        {
-            "type": "string",
-            "id": "accent_color",
-            "format": "color",
-            "label": "لون التمييز",
-            "value": "#7c3aed"
-        },
-        {
-            "type": "string",
-            "id": "accent_color_secondary",
-            "format": "color",
-            "label": "لون التمييز الثانوي",
-            "value": "#06b6d4"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار البنر الرئيسي",
-            "id": "show_hero_banner",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار العروض الخاطفة",
-            "id": "show_flash_sales",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار شبكة التصنيفات",
-            "id": "show_categories_grid",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار آراء العملاء",
-            "id": "show_testimonials",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار شارات الثقة",
-            "id": "show_trust_badges",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار وسائل الدفع",
-            "id": "show_payment_methods",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تثبيت القائمة العلوية",
-            "id": "sticky_header",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "سلة عائمة",
-            "id": "floating_cart",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "البحث الذكي",
-            "id": "smart_search_overlay",
-            "format": "switch",
-            "value": true
-        },
-        {
-            "type": "items",
-            "icon": "sicon-list",
-            "label": "تخطيط القائمة العلوية",
-            "id": "header_layout",
-            "format": "dropdown-list",
-            "selected": [
-                {
-                    "label": "افتراضي",
-                    "value": "default",
-                    "key": "hdr-default"
-                }
-            ],
-            "options": [
-                {
-                    "label": "افتراضي",
-                    "value": "default",
-                    "key": "hdr-default"
-                },
-                {
-                    "label": "مركز",
-                    "value": "centered",
-                    "key": "hdr-centered"
-                },
-                {
-                    "label": "منقسم",
-                    "value": "split",
-                    "key": "hdr-split"
-                }
-            ],
-            "source": "Manual",
-            "required": false
+            "value": "images/placeholder.png"
         }
     ],
     "components": [
         {
-            "key": "e1a1b2c3-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
+            "key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
             "title": {
-                "en": "Hero Banner",
-                "ar": "البنر الرئيسي"
+                "en": "Epic Hero Slider",
+                "ar": "البنر الرئيسي الملحمي"
             },
             "icon": "sicon-image",
-            "path": "home.hero-banner",
+            "path": "home.hero-slider",
             "image": "",
             "fields": [
                 {
@@ -187,8 +122,9 @@
                             "id": "slides.image",
                             "type": "string",
                             "format": "image",
-                            "label": "الصورة",
-                            "required": true
+                            "label": "صورة البنر",
+                            "required": true,
+                            "description": "* المقاس المناسب 1920×900 بكسل"
                         },
                         {
                             "id": "slides.mobile_image",
@@ -200,8 +136,9 @@
                             "id": "slides.title",
                             "type": "string",
                             "format": "text",
-                            "label": "العنوان",
-                            "multilanguage": true
+                            "label": "العنوان الرئيسي",
+                            "multilanguage": true,
+                            "placeholder": "مثال: أحدث ألعاب 2026"
                         },
                         {
                             "id": "slides.subtitle",
@@ -211,339 +148,148 @@
                             "multilanguage": true
                         },
                         {
-                            "id": "slides.button_text",
+                            "id": "slides.badge",
+                            "type": "string",
+                            "format": "text",
+                            "label": "نص الشارة",
+                            "multilanguage": true,
+                            "placeholder": "جديد | تخفيضات | حصري"
+                        },
+                        {
+                            "id": "slides.btn_text",
                             "type": "string",
                             "format": "text",
                             "label": "نص الزر",
                             "multilanguage": true
                         },
                         {
-                            "id": "slides.button_url",
+                            "id": "slides.btn_url",
                             "type": "string",
                             "format": "text",
                             "label": "رابط الزر"
-                        },
-                        {
-                            "id": "slides.badge_text",
-                            "type": "string",
-                            "format": "text",
-                            "label": "نص الشارة",
-                            "multilanguage": true
                         }
                     ]
                 }
             ]
         },
         {
-            "key": "f2b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+            "key": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
             "title": {
-                "en": "Flash Sales",
-                "ar": "عروض خاطفة"
+                "en": "Gaming Categories",
+                "ar": "أقسام الألعاب"
             },
-            "icon": "sicon-flash",
-            "path": "home.flash-sales",
+            "icon": "sicon-game-controller-alt",
+            "path": "home.gaming-categories",
             "image": "",
             "fields": [
                 {
                     "id": "title",
                     "type": "string",
                     "format": "text",
-                    "label": "عنوان القسم",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "value": "منصات الألعاب"
+                },
+                {
+                    "id": "subtitle",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص توضيحي",
+                    "multilanguage": true,
+                    "value": "اختر منصتك المفضلة"
+                },
+                {
+                    "id": "categories",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيفات",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "source": "categories",
+                    "multichoice": true,
+                    "searchable": true,
+                    "selected": [],
+                    "options": [],
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+            "title": {
+                "en": "Flash Deals Countdown",
+                "ar": "عروض خاطفة مع عد تنازلي"
+            },
+            "icon": "sicon-clock",
+            "path": "home.flash-deals",
+            "image": "",
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
                     "multilanguage": true,
                     "value": "عروض خاطفة"
                 },
                 {
-                    "id": "subtitle",
-                    "type": "string",
-                    "format": "text",
-                    "label": "نص توضيحي",
-                    "multilanguage": true,
-                    "value": "عروض محدودة - احصل عليها قبل نفاد الكمية!"
-                },
-                {
                     "id": "end_date",
                     "type": "string",
                     "format": "datetime",
-                    "label": "تاريخ الانتهاء",
+                    "label": "تاريخ انتهاء العرض",
                     "required": true
                 },
                 {
-                    "id": "background_color",
-                    "type": "string",
-                    "format": "color",
-                    "label": "لون الخلفية",
-                    "value": "#0f001a"
-                }
-            ]
-        },
-        {
-            "key": "a3c4d5e6-7f8a-9b0c-1d2e-3f4a5b6c7d8e",
-            "title": {
-                "en": "Categories Grid",
-                "ar": "شبكة التصنيفات"
-            },
-            "icon": "sicon-grid",
-            "path": "home.categories-grid",
-            "image": "",
-            "fields": [
-                {
-                    "id": "title",
-                    "type": "string",
-                    "format": "text",
-                    "label": "عنوان القسم",
-                    "multilanguage": true,
-                    "value": "تسوق حسب التصنيف"
-                },
-                {
-                    "id": "subtitle",
-                    "type": "string",
-                    "format": "text",
-                    "label": "نص توضيحي",
-                    "multilanguage": true,
-                    "value": "تصفح مجموعتنا المميزة"
-                }
-            ]
-        },
-        {
-            "key": "b4d5e6f7-8a9b-0c1d-2e3f-4a5b6c7d8e9f",
-            "title": {
-                "en": "Featured Products Slider",
-                "ar": "سلايدر المنتجات المميزة"
-            },
-            "icon": "sicon-star",
-            "path": "home.featured-products",
-            "image": "",
-            "fields": [
-                {
-                    "id": "title",
-                    "type": "string",
-                    "format": "text",
-                    "label": "عنوان القسم",
-                    "multilanguage": true,
-                    "value": "منتجات مميزة"
-                },
-                {
-                    "id": "subtitle",
-                    "type": "string",
-                    "format": "text",
-                    "label": "نص توضيحي",
-                    "multilanguage": true,
-                    "value": "تشكيلة مختارة يدوياً"
-                },
-                {
+                    "id": "products",
                     "type": "items",
-                    "icon": "sicon-list",
-                    "label": "التخطيط",
-                    "id": "layout",
                     "format": "dropdown-list",
-                    "selected": [
-                        {
-                            "label": "سلايدر",
-                            "value": "slider",
-                            "key": "layout-slider"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "سلايدر",
-                            "value": "slider",
-                            "key": "layout-slider"
-                        },
-                        {
-                            "label": "شبكة",
-                            "value": "grid",
-                            "key": "layout-grid"
-                        }
-                    ],
-                    "source": "Manual"
+                    "label": "المنتجات",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "source": "products",
+                    "multichoice": true,
+                    "searchable": true,
+                    "required": true,
+                    "maxLength": 8,
+                    "minLength": 2
                 }
             ]
         },
         {
-            "key": "c5e6f7a8-9b0c-1d2e-3f4a-5b6c7d8e9f0a",
+            "key": "d4e5f6a7-b8c9-0123-defa-234567890123",
             "title": {
-                "en": "Testimonials",
-                "ar": "آراء العملاء"
+                "en": "Latest Products Epic",
+                "ar": "أحدث المنتجات"
             },
-            "icon": "sicon-chat-bubbles",
-            "path": "home.testimonials",
+            "icon": "sicon-new-box",
+            "path": "home.latest-products-epic",
             "image": "",
             "fields": [
                 {
                     "id": "title",
                     "type": "string",
                     "format": "text",
-                    "label": "عنوان القسم",
+                    "label": "العنوان",
                     "multilanguage": true,
-                    "value": "ماذا يقول العملاء"
-                },
-                {
-                    "id": "testimonials",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "التقييمات",
-                    "item_label": "تقييم",
-                    "minLength": 1,
-                    "maxLength": 10,
-                    "fields": [
-                        {
-                            "id": "testimonials.name",
-                            "type": "string",
-                            "format": "text",
-                            "label": "الاسم",
-                            "required": true
-                        },
-                        {
-                            "id": "testimonials.role",
-                            "type": "string",
-                            "format": "text",
-                            "label": "المنصب"
-                        },
-                        {
-                            "id": "testimonials.avatar",
-                            "type": "string",
-                            "format": "image",
-                            "label": "الصورة الرمزية"
-                        },
-                        {
-                            "id": "testimonials.content",
-                            "type": "string",
-                            "format": "textarea",
-                            "label": "نص التقييم",
-                            "multilanguage": true,
-                            "required": true
-                        },
-                        {
-                            "id": "testimonials.rating",
-                            "type": "number",
-                            "format": "integer",
-                            "label": "التقييم (1-5)",
-                            "minimum": 1,
-                            "maximum": 5,
-                            "value": 5
-                        }
-                    ]
+                    "value": "أحدث المنتجات"
                 }
             ]
         },
         {
-            "key": "d6f7a8b9-0c1d-2e3f-4a5b-6c7d8e9f0a1b",
+            "key": "e5f6a7b8-c9d0-1234-efab-345678901234",
             "title": {
-                "en": "Trust Badges",
-                "ar": "شارات الثقة"
-            },
-            "icon": "sicon-shield-check",
-            "path": "home.trust-badges",
-            "image": "",
-            "fields": [
-                {
-                    "id": "badges",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "الشارات",
-                    "item_label": "شارة",
-                    "minLength": 1,
-                    "maxLength": 6,
-                    "fields": [
-                        {
-                            "id": "badges.icon",
-                            "type": "string",
-                            "format": "icon",
-                            "label": "الأيقونة (sicon-*)",
-                            "required": true
-                        },
-                        {
-                            "id": "badges.title",
-                            "type": "string",
-                            "format": "text",
-                            "label": "العنوان",
-                            "multilanguage": true,
-                            "required": true
-                        },
-                        {
-                            "id": "badges.description",
-                            "type": "string",
-                            "format": "text",
-                            "label": "الوصف",
-                            "multilanguage": true
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "e7a8b9c0-1d2e-3f4a-5b6c-7d8e9f0a1b2c",
-            "title": {
-                "en": "Countdown Offer",
-                "ar": "عرض مع عد تنازلي"
-            },
-            "icon": "sicon-clock",
-            "path": "home.countdown-offer",
-            "image": "",
-            "fields": [
-                {
-                    "id": "title",
-                    "type": "string",
-                    "format": "text",
-                    "label": "عنوان العرض",
-                    "multilanguage": true,
-                    "value": "عرض مميز لفترة محدودة"
-                },
-                {
-                    "id": "subtitle",
-                    "type": "string",
-                    "format": "text",
-                    "label": "نص توضيحي",
-                    "multilanguage": true,
-                    "value": "لا تفوت هذا العرض الحصري"
-                },
-                {
-                    "id": "end_date",
-                    "type": "string",
-                    "format": "datetime",
-                    "label": "تاريخ الانتهاء",
-                    "required": true
-                },
-                {
-                    "id": "button_text",
-                    "type": "string",
-                    "format": "text",
-                    "label": "نص الزر",
-                    "multilanguage": true,
-                    "value": "تسوق الآن"
-                },
-                {
-                    "id": "button_url",
-                    "type": "string",
-                    "format": "text",
-                    "label": "رابط الزر"
-                },
-                {
-                    "id": "background_color",
-                    "type": "string",
-                    "format": "color",
-                    "label": "لون الخلفية",
-                    "value": "#0f001a"
-                }
-            ]
-        },
-        {
-            "key": "f8b9c0d1-2e3f-4a5b-6c7d-8e9f0a1b2c3d",
-            "title": {
-                "en": "Payment Methods",
-                "ar": "وسائل الدفع"
+                "en": "Gift Cards Section",
+                "ar": "بطاقات الشحن"
             },
             "icon": "sicon-credit-card",
-            "path": "home.payment-methods-section",
+            "path": "home.gift-cards",
             "image": "",
             "fields": [
                 {
                     "id": "title",
                     "type": "string",
                     "format": "text",
-                    "label": "عنوان القسم",
+                    "label": "العنوان",
                     "multilanguage": true,
-                    "value": "وسائل دفع آمنة"
+                    "value": "بطاقات الشحن"
                 },
                 {
                     "id": "subtitle",
@@ -551,61 +297,14 @@
                     "format": "text",
                     "label": "نص توضيحي",
                     "multilanguage": true,
-                    "value": "معاملات مشفرة وآمنة 100%"
-                }
-            ]
-        },
-        {
-            "key": "a9b0c1d2-3e4f-5a6b-7c8d-9e0f1a2b3c4d",
-            "title": {
-                "en": "AI Features",
-                "ar": "مميزات الذكاء الاصطناعي"
-            },
-            "icon": "sicon-cpu",
-            "path": "home.ai-features",
-            "image": "",
-            "fields": [
-                {
-                    "id": "title",
-                    "type": "string",
-                    "format": "text",
-                    "label": "عنوان القسم",
-                    "multilanguage": true,
-                    "value": "مدعوم بالذكاء الاصطناعي"
-                },
-                {
-                    "id": "features",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "المميزات",
-                    "item_label": "ميزة",
-                    "minLength": 1,
-                    "maxLength": 4,
-                    "fields": [
-                        {
-                            "id": "features.title",
-                            "type": "string",
-                            "format": "text",
-                            "label": "العنوان",
-                            "multilanguage": true,
-                            "required": true
-                        },
-                        {
-                            "id": "features.description",
-                            "type": "string",
-                            "format": "textarea",
-                            "label": "الوصف",
-                            "multilanguage": true
-                        },
-                        {
-                            "id": "features.icon",
-                            "type": "string",
-                            "format": "icon",
-                            "label": "الأيقونة (sicon-*)"
-                        }
-                    ]
+                    "value": "شحن فوري لجميع المنصات"
                 }
             ]
         }
-    ]
+    ],
+    "support_url": null,
+    "description": {
+        "ar": "ثيم ملحمي للألعاب والشحن والبطاقات الرقمية بتصميم داكن فاخر مع مؤثرات نيون وزجاجية",
+        "en": "Epic gaming & digital cards theme with dark luxury design, neon effects, and glassmorphism"
+    }
 }

@@ -1,0 +1,39 @@
+{# Nova Gift Cards Section #}
+<section class="s-block--gift-cards py-16 relative">
+    <div class="container">
+        {% if component.title %}
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold nova-text-gradient mb-2">{{ component.title }}</h2>
+                {% if component.subtitle %}
+                    <p class="text-white/40 text-lg">{{ component.subtitle }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="nova-cat-card p-8 text-center group flex flex-col items-center justify-center min-h-[200px]">
+                <div class="nova-cat-glow"></div>
+                <i class="sicon-playstation text-5xl text-purple-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-white font-bold text-lg mb-2">PlayStation</h3>
+                <p class="text-white/30 text-sm">بطاقات PSN</p>
+            </div>
+            <div class="nova-cat-card p-8 text-center group flex flex-col items-center justify-center min-h-[200px]">
+                <div class="nova-cat-glow"></div>
+                <i class="sicon-xbox text-5xl text-green-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-white font-bold text-lg mb-2">Xbox</h3>
+                <p class="text-white/30 text-sm">بطاقات Xbox Live</p>
+            </div>
+            <div class="nova-cat-card p-8 text-center group flex flex-col items-center justify-center min-h-[200px]">
+                <div class="nova-cat-glow"></div>
+                <i class="sicon-steam text-5xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-white font-bold text-lg mb-2">Steam</h3>
+                <p class="text-white/30 text-sm">بطاقات Steam Wallet</p>
+            </div>
+            <div class="nova-cat-card p-8 text-center group flex flex-col items-center justify-center min-h-[200px]">
+                <div class="nova-cat-glow"></div>
+                <i class="sicon-google-play text-5xl text-pink-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-white font-bold text-lg mb-2">Google Play</h3>
+                <p class="text-white/30 text-sm">بطاقات جوجل بلاي</p>
+            </div>
+        </div>
+    </div>
+</section>

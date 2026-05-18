@@ -1,0 +1,40 @@
+{# Nova Epic Hero Slider #}
+<section class="nova-hero s-block--hero-slider">
+    <salla-slider id="nova-hero-slider-{{ position }}" auto-play type="fullwidth" static-when-single show-controls="false" show-dots="true">
+        <div slot="items">
+            {% for slide in component.slides %}
+                <div class="swiper-slide w-full min-h-[85vh] bg-[#0a0014] relative flex items-center">
+                    <div class="absolute inset-0">
+                        <img src="{{ slide.image }}" alt="{{ slide.title }}" class="w-full h-full object-cover hidden md:block"/>
+                        {% if slide.mobile_image %}
+                            <img src="{{ slide.mobile_image }}" alt="{{ slide.title }}" class="w-full h-full object-cover md:hidden"/>
+                        {% else %}
+                            <img src="{{ slide.image }}" alt="{{ slide.title }}" class="w-full h-full object-cover md:hidden"/>
+                        {% endif %}
+                    </div>
+                    <div class="nova-hero-content relative z-10 w-full">
+                        <div class="container">
+                            <div class="max-w-xl">
+                                {% if slide.badge %}
+                                    <span class="nova-badge nova-badge-hot mb-4 inline-block">{{ slide.badge }}</span>
+                                {% endif %}
+                                {% if slide.title %}
+                                    <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 nova-glitch leading-none">{{ slide.title }}</h2>
+                                {% endif %}
+                                {% if slide.subtitle %}
+                                    <p class="text-white/50 text-lg md:text-xl mb-8 leading-relaxed">{{ slide.subtitle }}</p>
+                                {% endif %}
+                                {% if slide.btn_url and slide.btn_text %}
+                                    <a href="{{ slide.btn_url }}" class="nova-btn-pulse inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 text-lg">
+                                        {{ slide.btn_text }}
+                                        <i class="sicon-arrow-left rtl:rotate-180"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </salla-slider>
+</section>

@@ -1,0 +1,60 @@
+{# Nova Flash Deals with Countdown #}
+{% set end_date = component.end_date %}
+{% set product_list = component.products %}
+<section class="s-block--flash-deals py-16 relative overflow-hidden" id="nova-flash-{{ position }}">
+    <div class="absolute inset-0 bg-gradient-to-r from-purple-950/30 via-black to-fuchsia-950/30"></div>
+    <div class="container relative">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+                    <i class="sicon-flash text-red-400 text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">{{ component.title }}</h2>
+                    <p class="text-white/40 text-sm">{{ trans('common.elements.limited_offer') }}</p>
+                </div>
+            </div>
+            <div id="nova-countdown-{{ position }}" class="flex gap-3" data-end="{{ end_date }}">
+                <div class="nova-countdown-box"><span class="nova-countdown-val" data-days>00</span><p class="text-white/30 text-[10px] uppercase tracking-widest mt-1">{{ trans('common.elements.days') }}</p></div>
+                <div class="nova-countdown-box"><span class="nova-countdown-val" data-hours>00</span><p class="text-white/30 text-[10px] uppercase tracking-widest mt-1">{{ trans('common.elements.hours') }}</p></div>
+                <div class="nova-countdown-box"><span class="nova-countdown-val" data-mins>00</span><p class="text-white/30 text-[10px] uppercase tracking-widest mt-1">{{ trans('common.elements.minutes') }}</p></div>
+                <div class="nova-countdown-box"><span class="nova-countdown-val" data-secs>00</span><p class="text-white/30 text-[10px] uppercase tracking-widest mt-1">{{ trans('common.elements.seconds') }}</p></div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% if product_list is defined and product_list|length %}
+                {% for product in product_list %}
+                    <div class="nova-product-card">
+                        <custom-salla-product-card product="{{ product }}"></custom-salla-product-card>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {% for product in store.featured_products|slice(0, 4) %}
+                    <div class="nova-product-card">
+                        <custom-salla-product-card product="{{ product }}"></custom-salla-product-card>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% if end_date %}
+<script>
+(function(){
+    var c = document.getElementById('nova-countdown-{{ position }}');
+    if(!c) return;
+    var end = new Date('{{ end_date }}').getTime();
+    var d=c.querySelector('[data-days]'),h=c.querySelector('[data-hours]'),m=c.querySelector('[data-mins]'),s=c.querySelector('[data-secs]');
+    function tick(){
+        var n=Date.now(),t=end-n;
+        if(t<=0){c.innerHTML='<span class="nova-badge nova-badge-sale text-lg px-6 py-3">انتهى العرض</span>';return}
+        d.textContent=String(Math.floor(t/864e5)).padStart(2,'0');
+        h.textContent=String(Math.floor((t%864e5)/36e5)).padStart(2,'0');
+        m.textContent=String(Math.floor((t%36e5)/6e4)).padStart(2,'0');
+        s.textContent=String(Math.floor((t%6e4)/1e3)).padStart(2,'0');
+    }
+    tick();setInterval(tick,1000);
+})();
+</script>
+{% endif %}

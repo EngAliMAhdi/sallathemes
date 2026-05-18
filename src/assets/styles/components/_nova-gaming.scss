@@ -1,0 +1,261 @@
+/* ============================================
+   NOVA - Epic Gaming Theme CSS
+   Dark luxury + Neon + Cyberpunk + Glassmorphism
+   ============================================ */
+
+@layer components {
+  /* ---- Glow Utilities ---- */
+  .nova-glow-purple { box-shadow: 0 0 20px rgba(180,77,255,.4), 0 0 60px rgba(180,77,255,.1); }
+  .nova-glow-cyan   { box-shadow: 0 0 20px rgba(0,229,255,.4), 0 0 60px rgba(0,229,255,.1); }
+  .nova-glow-pink   { box-shadow: 0 0 20px rgba(255,45,149,.4), 0 0 60px rgba(255,45,149,.1); }
+
+  .nova-text-gradient {
+    background: linear-gradient(135deg, #b44dff, #00e5ff, #ff2d95);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ---- Hero Section ---- */
+  .nova-hero {
+    position: relative;
+    min-height: 85vh;
+    overflow: hidden;
+  }
+  .nova-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(180,77,255,.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(0,229,255,.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(255,45,149,.08) 0%, transparent 50%);
+    z-index: 1;
+  }
+  .nova-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(180,77,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(180,77,255,.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 2;
+  }
+  .nova-hero-content {
+    position: relative;
+    z-index: 3;
+  }
+
+  /* ---- Gaming Category Cards ---- */
+  .nova-cat-card {
+    position: relative;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .5s cubic-bezier(.4,0,.2,1);
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(255,255,255,.04);
+    backdrop-filter: blur(10px);
+  }
+  .nova-cat-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(180,77,255,.3);
+    box-shadow: 0 0 40px rgba(180,77,255,.15), 0 20px 60px rgba(0,0,0,.4);
+  }
+  .nova-cat-card .nova-cat-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(180,77,255,.3), transparent 60%);
+    opacity: 0;
+    transition: opacity .4s;
+    pointer-events: none;
+  }
+  .nova-cat-card:hover .nova-cat-glow { opacity: 1; }
+
+  /* ---- Product Card Epic ---- */
+  .nova-product-card {
+    position: relative;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(255,255,255,.05);
+    backdrop-filter: blur(12px);
+    transition: all .5s;
+  }
+  .nova-product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(180,77,255,.25);
+    box-shadow: 0 0 50px rgba(180,77,255,.1), 0 20px 80px rgba(0,0,0,.5);
+  }
+  .nova-product-card img {
+    transition: transform .7s cubic-bezier(.4,0,.2,1);
+  }
+  .nova-product-card:hover img { transform: scale(1.08); }
+
+  /* ---- Countdown ---- */
+  .nova-countdown-box {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    min-width: 80px;
+    backdrop-filter: blur(8px);
+  }
+  .nova-countdown-val {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(180deg, #b44dff, #ff2d95);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ---- Neon Border Animation ---- */
+  .nova-border-anim {
+    position: relative;
+  }
+  .nova-border-anim::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(45deg, #b44dff, #00e5ff, #ff2d95, #b44dff);
+    background-size: 400% 400%;
+    animation: novaBorderGlow 3s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .4s;
+  }
+  .nova-border-anim:hover::after { opacity: 1; }
+
+  @keyframes novaBorderGlow {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ---- Floating Animation ---- */
+  .nova-float {
+    animation: novaFloat 6s ease-in-out infinite;
+  }
+  @keyframes novaFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* ---- Glitch Text ---- */
+  .nova-glitch {
+    position: relative;
+    text-shadow: 0.05em 0 0 rgba(180,77,255,.75), -0.05em -0.025em 0 rgba(0,229,255,.75);
+    animation: novaGlitch 2s infinite;
+  }
+  @keyframes novaGlitch {
+    0%,90%,100% { text-shadow: 0.05em 0 0 rgba(180,77,255,.75), -0.05em -0.025em 0 rgba(0,229,255,.75); }
+    91% { text-shadow: -0.05em -0.025em 0 rgba(180,77,255,.75), 0.025em 0.025em 0 rgba(0,229,255,.75); }
+    92% { text-shadow: 0.05em 0.035em 0 rgba(180,77,255,.75), 0.03em 0 0 rgba(0,229,255,.75); }
+  }
+
+  /* ---- Shimmer ---- */
+  .nova-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .nova-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+    transform: translateX(-100%);
+    animation: novaShimmer 2.5s infinite;
+  }
+  @keyframes novaShimmer {
+    100% { transform: translateX(100%); }
+  }
+
+  /* ---- Pulse Button ---- */
+  .nova-btn-pulse {
+    position: relative;
+  }
+  .nova-btn-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #b44dff, #00e5ff);
+    z-index: -1;
+    animation: novaPulse 2s ease-out infinite;
+  }
+  @keyframes novaPulse {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.08); }
+  }
+
+  /* ---- Section Divider ---- */
+  .nova-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180,77,255,.2), transparent);
+    border: 0;
+    margin: 2rem 0;
+  }
+
+  /* ---- Badge ---- */
+  .nova-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    padding: .375rem .875rem;
+    border-radius: 9999px;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .nova-badge-hot {
+    background: rgba(255,45,149,.15);
+    color: #ff2d95;
+    border: 1px solid rgba(255,45,149,.25);
+  }
+  .nova-badge-sale {
+    background: rgba(239,68,68,.15);
+    color: #f87171;
+    border: 1px solid rgba(239,68,68,.25);
+  }
+  .nova-badge-new {
+    background: rgba(0,229,255,.15);
+    color: #00e5ff;
+    border: 1px solid rgba(0,229,255,.25);
+  }
+
+  /* ---- Platform Icon ---- */
+  .nova-platform-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: all .3s;
+  }
+  
+  /* ---- Animate on Scroll ---- */
+  .nova-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .8s cubic-bezier(.4,0,.2,1);
+  }
+  .nova-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
+
+/* ---- Dark Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,.02); }
+::-webkit-scrollbar-thumb { background: rgba(180,77,255,.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(180,77,255,.4); }

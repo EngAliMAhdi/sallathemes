@@ -1,41 +1,26 @@
+{#
+| Variable         | Type       | Description                                                         |
+|------------------|------------|---------------------------------------------------------------------|
+| page             | object     |                                                                     |
+| page.title       | string     | *could be html                                                      |
+| page.slug        | string     | ex: "cat.show"                                                      |
+#}
 {% extends "layouts.master" %}
-
 {% block content %}
-<div class="-mt-[var(--header-height,80px)]">
-    {% component "home.hero-banner" %}
-</div>
-
-<div class="relative z-10 space-y-20 pb-20">
-    {% if theme.settings.get('show_flash_sales') %}
-        {% component "home.flash-sales" %}
-    {% endif %}
-
     {% component home %}
 
-    {% if theme.settings.get('show_categories_grid') %}
-        {% component "home.categories-grid" %}
+    {% if theme.settings.get('show_gaming_sections', true) %}
+        {% component "home.gaming-categories" %}
     {% endif %}
 
-    {% component "home.featured-products" %}
+    {% component "home.flash-deals" %}
 
-    {% component "home.countdown-offer" %}
+    {% component "home.gift-cards" %}
 
-    {% component "home.ai-features" %}
-
-    {% if theme.settings.get('show_testimonials') %}
-        {% component "home.testimonials" %}
+    {% if theme.settings.get('show_latest_products', true) %}
+        {% component "home.latest-products-epic" %}
     {% endif %}
-
-    {% if theme.settings.get('show_trust_badges') %}
-        {% component "home.trust-badges" %}
-    {% endif %}
-
-    {% if theme.settings.get('show_payment_methods') %}
-        {% component "home.payment-methods-section" %}
-    {% endif %}
-</div>
 {% endblock %}
-
 {% block scripts %}
-    <script type="text/javascript" defer src="{{ asset('home.js') }}"></script>
+    <script defer src="{{ 'home.js' | asset }}"></script>
 {% endblock %}

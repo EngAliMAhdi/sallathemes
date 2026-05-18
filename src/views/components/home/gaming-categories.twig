@@ -1,0 +1,44 @@
+{# Nova Gaming Categories - Neon Platform Cards #}
+<section class="s-block--gaming-cats py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent"></div>
+    <div class="container relative">
+        {% if component.title %}
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold nova-text-gradient mb-2">{{ component.title }}</h2>
+                {% if component.subtitle %}
+                    <p class="text-white/40 text-lg">{{ component.subtitle }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if component.categories is defined and component.categories|length %}
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {% for cat in component.categories %}
+                    <a href="{{ cat.url }}" class="nova-cat-card p-6 flex flex-col items-center justify-center text-center aspect-square group">
+                        <div class="nova-cat-glow"></div>
+                        {% if cat.image %}
+                            <img src="{{ cat.image }}" alt="{{ cat.name }}" class="w-16 h-16 object-contain mb-4 group-hover:scale-110 transition-transform"/>
+                        {% else %}
+                            <div class="nova-platform-icon mb-4 group-hover:scale-110 group-hover:border-purple-400/30 transition-all">
+                                <i class="{{ cat.icon|default('sicon-game-controller-alt') }} text-purple-400"></i>
+                            </div>
+                        {% endif %}
+                        <h3 class="text-white font-bold text-sm md:text-base group-hover:text-purple-300 transition-colors">{{ cat.name }}</h3>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {% for category in store.categories|slice(0, 6) %}
+                    <a href="{{ category.url }}" class="nova-cat-card p-6 flex flex-col items-center justify-center text-center aspect-square group">
+                        <div class="nova-cat-glow"></div>
+                        <div class="nova-platform-icon mb-4 group-hover:scale-110 group-hover:border-purple-400/30 transition-all">
+                            <i class="sicon-game-controller-alt text-purple-400"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-sm md:text-base group-hover:text-purple-300 transition-colors">{{ category.name }}</h3>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
