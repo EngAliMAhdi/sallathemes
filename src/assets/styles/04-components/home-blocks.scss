@@ -1,4 +1,4 @@
-/* ===== NOVA Epic Gaming - Home Blocks ===== */
+/* ===== Home Blocks — #2ACBF9 Accent ===== */
 
 /* Block Title */
 .s-block {
@@ -6,119 +6,101 @@
     @apply center-between mb-4 md:mb-8;
     .right-side { @apply rtl:pl-8 ltr:pr-8; }
     h2 {
-      @apply text-lg font-bold relative leading-[1.2] text-white;
-      &::after {
-        content: '';
-        @apply absolute -bottom-1 left-0 w-12 h-0.5 rounded-full;
-        background: linear-gradient(90deg, #a855f7, #06b6d4);
-      }
+      @apply text-lg font-bold relative leading-[1.2];
+      color: #2ACBF9 !important;
     }
-    p { @apply text-sm text-white/40 mt-2 line-clamp-1 sm:line-clamp-2 rtl:md:pl-16 ltr:md:pr-16; }
+    p { @apply text-sm text-white/50 mt-2 line-clamp-1 sm:line-clamp-2 rtl:md:pl-16 ltr:md:pr-16; }
     &-nav { @apply hidden sm:flex ltr:flex-row-reverse rtl:space-x-reverse space-x-2.5 rtl:mr-6 ltr:ml-6; }
   }
   &__display-all {
-    @apply inline-flex items-center gap-2 text-sm font-bold text-purple-400 hover:text-purple-300;
+    @apply inline-flex items-center gap-2 text-sm font-bold;
+    color: #2ACBF9;
+    &:hover { color: #5dd6fb; }
     i { @apply ltr:rotate-180 inline-block; }
   }
 }
 
-/* Hero Slider - Dark */
+/* Hero Slider */
 .s-block--hero-slider {
   .swiper-slide {
     @apply h-80 sm:h-96 lg:h-[528px] xl:h-[600px] relative;
-    background: #0a0014;
+    background: #033065;
     .swiper-lazy:after { @apply content-[''] absolute transition top-0 bg-black/60 w-full h-full; }
     .overlay-bg:after { @apply content-[''] absolute top-0 bg-black/60 w-full h-full; }
   }
   .swiper-pagination-bullet { background: rgba(255,255,255,.4); }
-  .swiper-pagination-bullet-active { background: #a855f7; }
+  .swiper-pagination-bullet-active { background: #2ACBF9; }
 }
 
-/* NOVA Hero */
-.s-block--nova-hero {
-  .swiper-slide {
-    background: #0a0014 !important;
-  }
-  .swiper-pagination-bullet { background: rgba(255,255,255,.4); }
-  .swiper-pagination-bullet-active { background: #a855f7; }
-  .container h2 {
-    animation: novaFadeUp .8s cubic-bezier(.4,0,.2,1) both;
-  }
-  .container p { animation: novaFadeUp .8s .15s cubic-bezier(.4,0,.2,1) both; }
-  .container a { animation: novaFadeUp .8s .3s cubic-bezier(.4,0,.2,1) both; }
-}
-
-/* NOVA Categories */
-.s-block--nova-cats {
-  background: linear-gradient(180deg, #0a0014, #0d001a, #0a0014);
-}
-
-/* Main Links Categories */
+/* Main Links — Categories */
 .s-block--categories {
   .slide--cat-entry {
     @apply flex flex-col items-center text-center gap-3 p-4 rounded-2xl transition-all duration-300;
-    background: rgba(255,255,255,.015);
-    border: 1px solid rgba(255,255,255,.03);
-    i { @apply text-2xl text-white/40; }
-    h2 { @apply text-sm font-medium text-white/60; }
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.04);
+    i { @apply text-2xl; color: rgba(255,255,255,.5); }
+    h2 { @apply text-sm font-medium; color: rgba(255,255,255,.7); }
     &:hover {
-      background: rgba(168,85,247,.08);
-      border-color: rgba(168,85,247,.15);
+      background: rgba(42,203,249,.06);
+      border-color: rgba(42,203,249,.15);
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(168,85,247,.08);
-      i { color: #a855f7; }
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+      i { color: #2ACBF9; }
       h2 { color: #fff; }
     }
   }
+}
+
+/* Enhanced Slider */
+.s-block--enhanced-slider {
+  .swiper-pagination-bullet-active { background: #2ACBF9; }
+  .swiper-slide h2 { color: #fff; }
+  .swiper-slide p { color: rgba(255,255,255,.6); }
 }
 
 /* Featured Products Tabs */
 .s-block--special-products {
   .tabs {
     salla-button[shape="link"] {
-      --tw-text-opacity: 1;
-      color: rgba(255,255,255,.4) !important;
-      &.is-active { color: #a855f7 !important; }
+      color: rgba(255,255,255,.45) !important;
+      &.is-active { color: #2ACBF9 !important; }
     }
   }
   .tabs__item > div { @apply grid grid-cols-2 lg:grid-cols-4 gap-4; }
 }
 
-/* Products List */
-.s-products-list-wrapper {
-  custom-salla-product-card, salla-product-card {
-    @apply rounded-xl overflow-hidden;
-    background: rgba(255,255,255,.015) !important;
-    border: 1px solid rgba(255,255,255,.03) !important;
-    transition: all .3s;
-    &:hover {
-      border-color: rgba(168,85,247,.15) !important;
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 40px rgba(168,85,247,.06);
-    }
-  }
+/* Products Slider */
+.s-block--products-slider,
+.s-block--slider-products-with-header {
+  .s-block__title h2 { color: #2ACBF9 !important; }
+  .swiper-slide custom-salla-product-card,
+  .swiper-slide salla-product-card { @apply mx-1; }
 }
 
-/* Product Card Overrides */
-custom-salla-product-card {
-  .s-product-card-image img { border-radius: .75rem .75rem 0 0; }
-  .s-product-card-content { padding: 1rem; }
-  .s-product-card-content-title a { color: #fff !important; font-weight: 600; }
-  .s-product-card-content-subtitle { color: rgba(255,255,255,.35) !important; }
-  .s-product-card-price h4 { color: #a855f7 !important; }
-  .s-product-card-sale-price h4 { color: #f43f5e !important; }
-}
-
-/* Latest Products Block */
+/* Latest Products */
 .s-block--latest-products {
-  .s-block__title h2 { color: #fff; }
+  .s-block__title h2 { color: #2ACBF9 !important; }
 }
+
+/* Fixed Products */
+.s-block--fixed-products {
+  .s-block__title h2 { color: #2ACBF9 !important; }
+}
+
+/* Fixed Banner */
+.s-block--fixed-banner img { border-radius: .75rem; }
+
+/* Photos Slider */
+.s-block--photos-slider .swiper-slide img { border-radius: .75rem; }
 
 /* Parallax */
 .s-block--parallax {
   @apply bg-fixed bg-cover bg-center relative;
   &:after { content: ''; @apply absolute inset-0 bg-black/50; }
   & > * { position: relative; z-index: 1; }
+  h2 { color: #fff !important; }
+  p { color: rgba(255,255,255,.6) !important; }
+  a { background: #2ACBF9 !important; color: #001E57 !important; }
 }
 
 /* Store Features */
@@ -126,21 +108,22 @@ custom-salla-product-card {
   @apply grid grid-cols-1 md:grid-cols-3 gap-6;
   & > div {
     @apply p-6 rounded-2xl text-center;
-    background: rgba(255,255,255,.015);
-    border: 1px solid rgba(255,255,255,.03);
-    i { @apply text-3xl text-purple-400 mb-3; }
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.05);
+    i { @apply text-3xl mb-3; color: #2ACBF9; }
     h3 { @apply text-white font-bold mb-1; }
-    p { @apply text-white/40 text-sm; }
+    p { @apply text-white/50 text-sm; }
   }
 }
 
 /* Testimonials */
 .s-block--testimonials,
 .s-block--custom-testimonials {
+  .s-block__title h2 { color: #2ACBF9 !important; }
   .swiper-slide > div {
-    background: rgba(255,255,255,.015) !important;
-    border: 1px solid rgba(255,255,255,.03) !important;
-    border-radius: 1rem;
+    background: rgba(255,255,255,.03) !important;
+    border: 1px solid rgba(255,255,255,.05) !important;
+    border-radius: .75rem;
     p, h4, span { color: rgba(255,255,255,.7) !important; }
   }
 }
@@ -148,54 +131,36 @@ custom-salla-product-card {
 /* Brands */
 .s-block--brands {
   a {
-    background: rgba(255,255,255,.02);
-    border: 1px solid rgba(255,255,255,.04);
-    border-radius: 1rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: .75rem;
     padding: 1.5rem;
-    &:hover { border-color: rgba(168,85,247,.2); background: rgba(168,85,247,.04); }
+    &:hover { border-color: rgba(42,203,249,.2); }
   }
-}
-
-/* Fixed Banner */
-.s-block--fixed-banner {
-  img { border-radius: 1rem; }
-}
-
-/* Photos Slider */
-.s-block--photos-slider {
-  .swiper-slide img { border-radius: .75rem; }
-}
-
-/* YouTube Section */
-.s-block--youtube {
-  iframe { border-radius: 1rem; }
 }
 
 /* Square Photos */
 .s-block--square-photos {
   a > div {
-    background: rgba(255,255,255,.02);
-    border: 1px solid rgba(255,255,255,.04);
-    border-radius: 1rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: .75rem;
     overflow: hidden;
-    &:hover { border-color: rgba(168,85,247,.2); }
+    &:hover { border-color: rgba(42,203,249,.2); }
     h3 { color: #fff !important; }
-    p { color: rgba(255,255,255,.35) !important; }
+    p { color: rgba(255,255,255,.4) !important; }
   }
 }
 
-/* NOVA Gift Cards */
-.s-block--nova-giftcards {
-  background: linear-gradient(180deg, #0a0014, #0d001a, #0a0014);
+/* Enhanced Square Banners */
+.s-block--enhanced-square-banners {
+  a > div {
+    background: rgba(255,255,255,.03) !important;
+    border: 1px solid rgba(255,255,255,.05) !important;
+    border-radius: .75rem;
+    h3 { color: #fff !important; }
+  }
 }
 
-/* NOVA Flash Deals */
-.s-block--nova-flash {
-  background: #0a0014;
-}
-
-/* Pulse button for hero */
-@keyframes novaPulse {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1.05); }
-}
+/* YouTube Section */
+.s-block--youtube iframe { border-radius: .75rem; }

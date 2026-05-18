@@ -7,7 +7,31 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    {% component home %}
+
+    {# 1. Hero Slider #}
+    {% component "home.enhanced-slider" %}
+
+    {# 2. Categories Auto Slider — "تسوق حسب التصنيفات التالية" #}
+    {% component "home.main-links" %}
+
+    {# 3. Products Slider (Auto) #}
+    {% component "home.products-slider" %}
+
+    {# 4. Fixed Banner #}
+    {% component "home.fixed-banner" %}
+
+    {# 5. Latest Products — Scrollable Row #}
+    {% component "home.latest-products" %}
+
+    {# 6. Store Features (Trust Badges) #}
+    {% component "home.store-features" %}
+
+    {# 7. Testimonials #}
+    {% component "home.testimonials" %}
+
+    {# 8. Brands #}
+    {% component "home.brands" %}
+
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>

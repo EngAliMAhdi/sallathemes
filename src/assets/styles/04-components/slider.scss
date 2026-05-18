@@ -189,3 +189,15 @@ model-viewer[style*="width"]:before{
     @apply min-h-[380px] max-h-[480px] md:max-h-[680px];
   }
 }
+
+/* NOVA — Slider Navigation Accent */
+.swiper-pagination-bullet-active { background: #2ACBF9 !important; }
+.s-slider-button-prev, .s-slider-button-next,
+.swiper-button-prev, .swiper-button-next {
+  color: #2ACBF9 !important;
+  background: rgba(0,30,87,.8);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  &:hover { background: rgba(42,203,249,.15); }
+}
+.s-slider-button-prev::after, .s-slider-button-next::after { font-size: 1rem; }

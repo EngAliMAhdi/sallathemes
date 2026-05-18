@@ -1,31 +1,24 @@
-
 .store-footer {
   @apply relative text-white mt-8 sm:mt-16;
-  background: #0a0014 !important;
-  border-top: 1px solid rgba(255,255,255,.04);
-
   a{
-    @apply transition-all hover:text-purple-400;
-    color: rgba(255,255,255,.5);
+    @apply transition-all;
+    &:hover { color: #2ACBF9; }
   }
-
   &__inner{
     @apply py-8 lg:py-16 border-b border-white/5;
   }  
-
-  h3{
-    @apply text-lg font-bold mb-3 lg:mb-5 text-white;
-  }
-
+  h3{ @apply text-lg font-bold mb-3 lg:mb-5; }
   .social-link {
-    @apply border border-white/10 rounded-full w-8 h-8 justify-center flex items-center hover:border-purple-400/30 hover:text-purple-400 transition duration-300 text-sm text-white/50
+    @apply border border-white/10 rounded-full w-8 h-8 justify-center flex items-center transition duration-300 text-sm text-white/50;
+    &:hover {
+      border-color: #2ACBF9;
+      color: #2ACBF9;
+    }
   }
-
   .contact-social{
     @apply mt-5 pt-5 border-t border-white/5;
     ul { @apply mb-0; }
   }
-
   .footer-is-light & {
     @apply bg-gray-50 text-gray-700;
     .store-footer__inner { @apply bg-gray-100 border-b-gray-200; }
@@ -34,7 +27,4 @@
   }
 }
 
-
-.copyright-text p{
-  @apply text-white/25;
-}
+.copyright-text p{ @apply text-white/25; }

@@ -1,0 +1,284 @@
+/* ============================================
+   NOVA Custom Theme — Exact Palette
+   bg:      #033065
+   header:  #001E57
+   accent:  #2ACBF9 (icons, CTAs, titles)
+   topbar:  #141A2A
+   footer:  #141A2A
+   ============================================ */
+
+/* ---- Root & Body ---- */
+body.theme-raed {
+  background-color: #033065 !important;
+  color: #fff;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #022550; }
+::-webkit-scrollbar-thumb { background: #2ACBF9; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #5dd6fb; }
+
+::selection { background: rgba(42,203,249,.25); color: #fff; }
+
+/* ---- Top Navbar (the thin strip) ---- */
+.top-navbar {
+  background: #141A2A !important;
+  border-bottom: 1px solid rgba(42,203,249,.1) !important;
+  color: rgba(255,255,255,.7) !important;
+}
+.top-navbar a,
+.top-navbar salla-menu,
+.top-navbar .s-menu-item {
+  color: rgba(255,255,255,.65) !important;
+}
+.top-navbar a:hover { color: #2ACBF9 !important; }
+.top-navbar .s-search-input {
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  color: #fff !important;
+  border-radius: .5rem !important;
+}
+.top-navbar .s-search-input::placeholder { color: rgba(255,255,255,.3) !important; }
+
+/* ---- Main Nav (Header) ---- */
+.main-nav-container {
+  background: #001E57 !important;
+  border-bottom: 1px solid rgba(42,203,249,.08) !important;
+  color: #fff !important;
+}
+.main-nav-container .inner { background: #001E57 !important; }
+.main-nav-container .menu-item {
+  color: rgba(255,255,255,.7) !important;
+}
+.main-nav-container .menu-item:hover,
+.main-nav-container .menu-item.is-active {
+  color: #2ACBF9 !important;
+  background: rgba(42,203,249,.08) !important;
+}
+.main-nav-container .navbar-brand img { filter: brightness(0) invert(1); }
+
+/* ---- Icons (header) ---- */
+.main-nav-container i,
+.main-nav-container .sicon,
+.main-nav-container .header-btn__icon {
+  color: #2ACBF9 !important;
+}
+
+/* ---- Buttons in header ---- */
+.main-nav-container .btn--rounded-gray,
+.top-navbar .btn--rounded-gray {
+  background: rgba(255,255,255,.06) !important;
+  color: rgba(255,255,255,.7) !important;
+}
+.main-nav-container .btn--rounded-gray:hover,
+.top-navbar .btn--rounded-gray:hover {
+  background: rgba(42,203,249,.12) !important;
+  color: #2ACBF9 !important;
+}
+
+/* ---- Cart icon circle ---- */
+salla-cart-summary .s-cart-summary-count {
+  background: #2ACBF9 !important;
+  color: #001E57 !important;
+  font-weight: 700 !important;
+}
+
+/* ---- Footer ---- */
+.store-footer {
+  background: #141A2A !important;
+  border-top: 1px solid rgba(42,203,249,.08) !important;
+  color: #fff !important;
+}
+.store-footer h3 {
+  color: #2ACBF9 !important;
+  font-weight: 700;
+}
+.store-footer p,
+.store-footer span,
+.store-footer .s-contact-item {
+  color: rgba(255,255,255,.7) !important;
+}
+.store-footer a {
+  color: rgba(255,255,255,.55) !important;
+  transition: color .2s;
+}
+.store-footer a:hover {
+  color: #2ACBF9 !important;
+}
+.store-footer .social-link {
+  border-color: rgba(255,255,255,.12) !important;
+  color: rgba(255,255,255,.5) !important;
+}
+.store-footer .social-link:hover {
+  border-color: #2ACBF9 !important;
+  color: #2ACBF9 !important;
+}
+.copyright-text,
+.copyright-text span,
+.copyright-text p {
+  color: rgba(255,255,255,.3) !important;
+}
+
+/* ---- Primary Buttons ---- */
+.btn--primary,
+salla-button[color="primary"] {
+  background: #2ACBF9 !important;
+  color: #001E57 !important;
+  border-color: #2ACBF9 !important;
+  font-weight: 700 !important;
+}
+.btn--primary:hover {
+  background: #5dd6fb !important;
+}
+.btn--outline-primary {
+  border-color: #2ACBF9 !important;
+  color: #2ACBF9 !important;
+}
+.btn--outline-primary:hover {
+  background: #2ACBF9 !important;
+  color: #001E57 !important;
+}
+
+/* ---- Accent Color / Links ---- */
+a { color: #2ACBF9; }
+a:hover { color: #5dd6fb; }
+.text-primary { color: #2ACBF9 !important; }
+
+/* ---- Product Cards ---- */
+custom-salla-product-card {
+  border-radius: .75rem;
+  overflow: hidden;
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
+  transition: all .3s;
+}
+custom-salla-product-card:hover {
+  border-color: rgba(42,203,249,.15) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.3), 0 0 30px rgba(42,203,249,.06);
+}
+
+/* ---- Sale Badge Override ---- */
+.s-product-card-promotion-title {
+  background: #2ACBF9 !important;
+  color: #001E57 !important;
+  font-weight: 700;
+}
+
+/* ---- Price Overrides ---- */
+.s-product-card-price h4 { color: #fff !important; }
+.s-product-card-sale-price h4 { color: #ff6b7a !important; }
+
+/* ---- Section Titles ---- */
+.s-block__title h2 {
+  color: #2ACBF9 !important;
+}
+
+/* ---- Slider Navigation Arrows ---- */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #2ACBF9 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #2ACBF9 !important;
+}
+
+/* ---- Filters ---- */
+salla-filters {
+  background: rgba(255,255,255,.02) !important;
+  border: 1px solid rgba(255,255,255,.04) !important;
+  border-radius: .75rem;
+}
+
+/* ---- Forms ---- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select,
+.s-form-control {
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  color: #fff !important;
+  border-radius: .5rem !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #2ACBF9 !important;
+  box-shadow: 0 0 0 2px rgba(42,203,249,.15) !important;
+}
+
+/* ---- Breadcrumb ---- */
+.breadcrumbs a { color: rgba(255,255,255,.5) !important; }
+.breadcrumbs a:hover { color: #2ACBF9 !important; }
+.breadcrumbs .active { color: #2ACBF9 !important; }
+
+/* ---- Gifting / Loyalty ---- */
+.s-gifting-card,
+.s-loyalty-card {
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
+  border-radius: .75rem;
+}
+
+/* ---- Customer Dashboard ---- */
+.s-user-menu a,
+.s-user-page .s-card {
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
+}
+.s-user-menu a:hover { color: #2ACBF9 !important; }
+
+/* ---- Countdown Timer ---- */
+salla-count-down {
+  color: #2ACBF9 !important;
+}
+
+/* ---- Store Features ---- */
+.s-block--store-features i { color: #2ACBF9 !important; }
+
+/* ---- Testimonials ---- */
+.s-block--testimonials .swiper-slide > div {
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
+}
+
+/* ---- Brands ---- */
+.s-block--brands a {
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
+  border-radius: .75rem;
+}
+.s-block--brands a:hover {
+  border-color: rgba(42,203,249,.2) !important;
+}
+
+/* ---- Mega Menu Dropdown ---- */
+.sub-menu,
+.s-mega-menu {
+  background: #001E57 !important;
+  border: 1px solid rgba(42,203,249,.08) !important;
+  border-radius: .75rem;
+}
+.sub-menu a { color: rgba(255,255,255,.7) !important; }
+.sub-menu a:hover { color: #2ACBF9 !important; }
+
+/* ---- Mobile Menu ---- */
+#mobile-menu,
+.mm-ocd {
+  background: #001E57 !important;
+}
+
+/* ---- Salla Web Component Overrides ---- */
+.s-tabs-header .is-active { color: #2ACBF9 !important; border-color: #2ACBF9 !important; }
+salla-button[fill="outline"][color="light"] { border-color: rgba(255,255,255,.15) !important; color: rgba(255,255,255,.6) !important; }
+salla-button[fill="outline"][color="light"]:hover { border-color: #2ACBF9 !important; color: #2ACBF9 !important; }
+
+/* ---- Pulse animation for CTAs ---- */
+@keyframes novaPulse {
+  0% { box-shadow: 0 0 0 0 rgba(42,203,249,.4); }
+  70% { box-shadow: 0 0 0 12px rgba(42,203,249,0); }
+  100% { box-shadow: 0 0 0 0 rgba(42,203,249,0); }
+}

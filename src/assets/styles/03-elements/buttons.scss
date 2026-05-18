@@ -83,13 +83,16 @@ salla-button {
 
   &--rounded-gray {
     @apply inline-flex grow-0 justify-center w-full rounded-full px-3.5 py-2 items-center transition-colors text-sm font-medium whitespace-nowrap;
-    background: rgba(255,255,255,.05);
+    background: rgba(255,255,255,.06);
     color: rgba(255,255,255,.6);
-    &:hover { background: rgba(255,255,255,.08); color: #fff; }
+    &:hover { background: rgba(42,203,249,.12); color: #2ACBF9; }
   }
 
   &--circle-gray {
-    @apply inline-flex justify-center items-center rounded-full px-3 py-3 h-9 w-9 transition-colors bg-gray-200/30 hover:bg-gray-200/50 text-sm font-medium;
+    @apply inline-flex justify-center items-center rounded-full px-3 py-3 h-9 w-9 transition-colors text-sm font-medium;
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.5);
+    &:hover { background: rgba(42,203,249,.12); color: #2ACBF9; }
   }
 
   &--icon {
@@ -137,11 +140,17 @@ salla-button {
   }
 
   &--primary {
-    @apply text-primary-reverse border border-primary bg-primary;
+    @apply text-[#001E57] border font-bold;
+    background: #2ACBF9 !important;
+    border-color: #2ACBF9 !important;
+    &:hover { background: #5dd6fb !important; }
   }
 
   &--outline-primary {
-    @apply border border-primary text-primary hover:bg-primary hover:text-primary-reverse;
+    @apply border font-bold;
+    border-color: #2ACBF9 !important;
+    color: #2ACBF9 !important;
+    &:hover { background: #2ACBF9 !important; color: #001E57 !important; }
   }
 
   &--outline {
