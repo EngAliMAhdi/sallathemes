@@ -8,18 +8,6 @@
 {% extends "layouts.master" %}
 {% block content %}
     {% component home %}
-
-    {% if theme.settings.get('show_gaming_sections', true) %}
-        {% component "home.gaming-categories" %}
-    {% endif %}
-
-    {% component "home.flash-deals" %}
-
-    {% component "home.gift-cards" %}
-
-    {% if theme.settings.get('show_latest_products', true) %}
-        {% component "home.latest-products-epic" %}
-    {% endif %}
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>
