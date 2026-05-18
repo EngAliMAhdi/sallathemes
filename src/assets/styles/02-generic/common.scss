@@ -16,11 +16,18 @@ input[type="file"] {
 }
 
 body{
-  @apply bg-gray-50;
+  @apply bg-[#0a0014] text-white;
   [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select{
     @apply focus:ring-0;
   }
 }
+
+/* Dark Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0014; }
+::-webkit-scrollbar-thumb { background: rgba(168,85,247,.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(168,85,247,.5); }
+::selection { background: rgba(168,85,247,.3); color: #fff; }
 
 .text-start{
 	@apply rtl:text-right ltr:text-left;
